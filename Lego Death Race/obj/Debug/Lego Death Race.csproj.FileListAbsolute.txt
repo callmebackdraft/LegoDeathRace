@@ -2,3 +2,12 @@ C:\Users\Dirk-Jan de Beijer\OneDrive - Office 365 Fontys\PT11 Proftaak Groep B\O
 C:\Users\CallMeBackdraft\Downloads\OneDrive_2017-03-13\Lego Death Race\bin\Debug\Lego Death Race.exe.config
 C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\V Studio\Lego Death Race\Lego Death Race\bin\Debug\Lego Death Race.exe.config
 C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\Lego Death Race.exe.config
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\Lego Death Race.exe
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\Lego Death Race.pdb
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego Death Race.csprojResolveAssemblyReference.cache
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.Form1.resources
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.PlayerControl.resources
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.Properties.Resources.resources
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego Death Race.csproj.GenerateResource.Cache
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego Death Race.exe
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego Death Race.pdb
