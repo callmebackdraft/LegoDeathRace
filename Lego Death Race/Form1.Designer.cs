@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.playerControl1 = new Lego_Death_Race.PlayerControl();
             this.button1 = new System.Windows.Forms.Button();
+            this.playerControl1 = new Lego_Death_Race.PlayerControl();
             this.SuspendLayout();
-            // 
-            // playerControl1
-            // 
-            this.playerControl1.BackColor = System.Drawing.Color.White;
-            this.playerControl1.Location = new System.Drawing.Point(23, 123);
-            this.playerControl1.Name = "playerControl1";
-            this.playerControl1.Size = new System.Drawing.Size(524, 688);
-            this.playerControl1.TabIndex = 0;
             // 
             // button1
             // 
@@ -49,6 +41,14 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // playerControl1
+            // 
+            this.playerControl1.BackColor = System.Drawing.Color.White;
+            this.playerControl1.Location = new System.Drawing.Point(41, 39);
+            this.playerControl1.Name = "playerControl1";
+            this.playerControl1.Size = new System.Drawing.Size(524, 688);
+            this.playerControl1.TabIndex = 0;
             // 
             // Form1
             // 

@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tboxName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblCurrentLapTime = new System.Windows.Forms.Label();
+            this.lblFastestLapTime = new System.Windows.Forms.Label();
+            this.lblFastestSpeed = new System.Windows.Forms.Label();
+            this.lblCurrentSpeed = new System.Windows.Forms.Label();
             this.lblCurrentLap = new System.Windows.Forms.Label();
+            this.lboxLapTimes = new System.Windows.Forms.ListBox();
+            this.lblRank = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblLaptimesTemplate = new System.Windows.Forms.Label();
+            this.pboxPowerup = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -56,28 +56,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxPowerup)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // tboxName
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(105, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(314, 53);
-            this.textBox1.TabIndex = 2;
+            this.tboxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxName.Location = new System.Drawing.Point(105, 25);
+            this.tboxName.Name = "tboxName";
+            this.tboxName.Size = new System.Drawing.Size(314, 53);
+            this.tboxName.TabIndex = 2;
+            this.tboxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lblLaptimesTemplate);
+            this.groupBox1.Controls.Add(this.lboxLapTimes);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblCurrentLapTime);
+            this.groupBox1.Controls.Add(this.lblFastestLapTime);
+            this.groupBox1.Controls.Add(this.lblFastestSpeed);
+            this.groupBox1.Controls.Add(this.lblCurrentSpeed);
             this.groupBox1.Controls.Add(this.pictureBox5);
             this.groupBox1.Controls.Add(this.lblCurrentLap);
             this.groupBox1.Controls.Add(this.pictureBox4);
@@ -93,60 +93,82 @@
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             // 
-            // label4
+            // label7
             // 
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(19, 133);
-            this.label4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 23);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "label4";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(147, 287);
+            this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 50);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "999";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label3
+            // label6
             // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(147, 133);
-            this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 23);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "label3";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(275, 287);
+            this.label6.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(96, 50);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "999";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label2
+            // label5
             // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(275, 133);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 23);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "label2";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(403, 287);
+            this.label5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 50);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "999";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label1
+            // lblCurrentLapTime
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(403, 133);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 23);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "label1";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblCurrentLapTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentLapTime.Location = new System.Drawing.Point(19, 133);
+            this.lblCurrentLapTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.lblCurrentLapTime.Name = "lblCurrentLapTime";
+            this.lblCurrentLapTime.Size = new System.Drawing.Size(96, 23);
+            this.lblCurrentLapTime.TabIndex = 15;
+            this.lblCurrentLapTime.Text = "label4";
+            this.lblCurrentLapTime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // pictureBox5
+            // lblFastestLapTime
             // 
-            this.pictureBox5.Image = global::Lego_Death_Race.Properties.Resources.icon_lap_fastest;
-            this.pictureBox5.Location = new System.Drawing.Point(147, 34);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(16);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(96, 96);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 6;
-            this.pictureBox5.TabStop = false;
+            this.lblFastestLapTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFastestLapTime.Location = new System.Drawing.Point(147, 133);
+            this.lblFastestLapTime.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.lblFastestLapTime.Name = "lblFastestLapTime";
+            this.lblFastestLapTime.Size = new System.Drawing.Size(96, 23);
+            this.lblFastestLapTime.TabIndex = 14;
+            this.lblFastestLapTime.Text = "label3";
+            this.lblFastestLapTime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblFastestSpeed
+            // 
+            this.lblFastestSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFastestSpeed.Location = new System.Drawing.Point(275, 133);
+            this.lblFastestSpeed.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.lblFastestSpeed.Name = "lblFastestSpeed";
+            this.lblFastestSpeed.Size = new System.Drawing.Size(96, 23);
+            this.lblFastestSpeed.TabIndex = 13;
+            this.lblFastestSpeed.Text = "label2";
+            this.lblFastestSpeed.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblCurrentSpeed
+            // 
+            this.lblCurrentSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentSpeed.Location = new System.Drawing.Point(403, 133);
+            this.lblCurrentSpeed.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.lblCurrentSpeed.Name = "lblCurrentSpeed";
+            this.lblCurrentSpeed.Size = new System.Drawing.Size(96, 23);
+            this.lblCurrentSpeed.TabIndex = 12;
+            this.lblCurrentSpeed.Text = "label1";
+            this.lblCurrentSpeed.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblCurrentLap
             // 
@@ -158,6 +180,38 @@
             this.lblCurrentLap.TabIndex = 11;
             this.lblCurrentLap.Text = "10";
             this.lblCurrentLap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lboxLapTimes
+            // 
+            this.lboxLapTimes.FormattingEnabled = true;
+            this.lboxLapTimes.ItemHeight = 16;
+            this.lboxLapTimes.Location = new System.Drawing.Point(6, 188);
+            this.lboxLapTimes.Name = "lboxLapTimes";
+            this.lboxLapTimes.Size = new System.Drawing.Size(135, 212);
+            this.lboxLapTimes.TabIndex = 20;
+            // 
+            // lblRank
+            // 
+            this.lblRank.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblRank.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRank.Location = new System.Drawing.Point(3, 3);
+            this.lblRank.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.lblRank.Name = "lblRank";
+            this.lblRank.Size = new System.Drawing.Size(96, 96);
+            this.lblRank.TabIndex = 21;
+            this.lblRank.Text = "1";
+            this.lblRank.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Lego_Death_Race.Properties.Resources.icon_lap_fastest;
+            this.pictureBox5.Location = new System.Drawing.Point(147, 34);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(16);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(96, 96);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 6;
+            this.pictureBox5.TabStop = false;
             // 
             // pictureBox4
             // 
@@ -172,19 +226,23 @@
             // 
             // pictureBox3
             // 
+            this.pictureBox3.Image = global::Lego_Death_Race.Properties.Resources.icon_powerup_speedup;
             this.pictureBox3.Location = new System.Drawing.Point(275, 188);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(16);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(96, 96);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 4;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox9
             // 
+            this.pictureBox9.Image = global::Lego_Death_Race.Properties.Resources.icon_powerup_minigun;
             this.pictureBox9.Location = new System.Drawing.Point(147, 188);
             this.pictureBox9.Margin = new System.Windows.Forms.Padding(16);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(96, 96);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox9.TabIndex = 8;
             this.pictureBox9.TabStop = false;
             // 
@@ -201,10 +259,12 @@
             // 
             // pictureBox7
             // 
+            this.pictureBox7.Image = global::Lego_Death_Race.Properties.Resources.icon_slowdown;
             this.pictureBox7.Location = new System.Drawing.Point(403, 188);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(16, 16, 16, 3);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(96, 96);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 10;
             this.pictureBox7.TabStop = false;
             // 
@@ -219,78 +279,26 @@
             this.pictureBox8.TabIndex = 9;
             this.pictureBox8.TabStop = false;
             // 
-            // pictureBox2
+            // pboxPowerup
             // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(425, 3);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(96, 96);
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(96, 96);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(403, 287);
-            this.label5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 50);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "999";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label6
-            // 
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(275, 287);
-            this.label6.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 50);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "999";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(147, 287);
-            this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 50);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "999";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblLaptimesTemplate
-            // 
-            this.lblLaptimesTemplate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLaptimesTemplate.Location = new System.Drawing.Point(6, 188);
-            this.lblLaptimesTemplate.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.lblLaptimesTemplate.Name = "lblLaptimesTemplate";
-            this.lblLaptimesTemplate.Size = new System.Drawing.Size(135, 23);
-            this.lblLaptimesTemplate.TabIndex = 19;
-            this.lblLaptimesTemplate.Text = "Lap 1: 1:43:02";
+            this.pboxPowerup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pboxPowerup.Location = new System.Drawing.Point(425, 3);
+            this.pboxPowerup.Name = "pboxPowerup";
+            this.pboxPowerup.Size = new System.Drawing.Size(96, 96);
+            this.pboxPowerup.TabIndex = 3;
+            this.pboxPowerup.TabStop = false;
             // 
             // PlayerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.lblRank);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pboxPowerup);
+            this.Controls.Add(this.tboxName);
             this.Name = "PlayerControl";
-            this.Size = new System.Drawing.Size(524, 688);
+            this.Size = new System.Drawing.Size(524, 552);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
@@ -299,18 +307,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxPowerup)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TextBox tboxName;
+        private System.Windows.Forms.PictureBox pboxPowerup;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
@@ -320,13 +325,14 @@
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblCurrentLap;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCurrentLapTime;
+        private System.Windows.Forms.Label lblFastestLapTime;
+        private System.Windows.Forms.Label lblFastestSpeed;
+        private System.Windows.Forms.Label lblCurrentSpeed;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblLaptimesTemplate;
+        private System.Windows.Forms.ListBox lboxLapTimes;
+        private System.Windows.Forms.Label lblRank;
     }
 }
