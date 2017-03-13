@@ -16,5 +16,11 @@ namespace Lego_Death_Race
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            playerControl1.AddLapTime(new Random().Next());
+            playerControl1.AddLapTime(34);
+        }
     }
 }

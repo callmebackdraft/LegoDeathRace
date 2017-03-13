@@ -28,24 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.playerControl1 = new Lego_Death_Race.PlayerControl();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
+            // playerControl1
+            // 
+            this.playerControl1.BackColor = System.Drawing.Color.White;
+            this.playerControl1.Location = new System.Drawing.Point(23, 123);
+            this.playerControl1.Name = "playerControl1";
+            this.playerControl1.Size = new System.Drawing.Size(524, 688);
+            this.playerControl1.TabIndex = 0;
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(140, 112);
+            this.button1.Location = new System.Drawing.Point(685, 188);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 1;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(702, 430);
+            this.ClientSize = new System.Drawing.Size(997, 770);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.playerControl1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -54,6 +65,7 @@
 
         #endregion
 
+        private PlayerControl playerControl1;
         private System.Windows.Forms.Button button1;
     }
 }

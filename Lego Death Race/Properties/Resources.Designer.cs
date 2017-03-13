@@ -63,9 +63,29 @@ namespace Lego_Death_Race.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_lap {
+            get {
+                object obj = ResourceManager.GetObject("icon_lap", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_lap_fastest {
             get {
                 object obj = ResourceManager.GetObject("icon_lap_fastest", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_speedometer {
+            get {
+                object obj = ResourceManager.GetObject("icon_speedometer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
