@@ -16,10 +16,10 @@ namespace Lego_Death_Race
         public StartGameSettings()
         {
             InitializeComponent();
-            PlayerCount = Convert.ToSByte(nudPlayerCount.Value);
+            changeDisplay();
         }
 
-        private void nudPlayerAmount_ValueChanged(object sender, EventArgs e)
+        private void changeDisplay()
         {
             PlayerCount = Convert.ToSByte(nudPlayerCount.Value);
             if (PlayerCount == 3)
@@ -37,6 +37,11 @@ namespace Lego_Death_Race
                 tboxPlayerName2.Enabled = false;
                 tboxPlayerName3.Enabled = false;
             }
+        }
+
+        private void nudPlayerAmount_ValueChanged(object sender, EventArgs e)
+        {
+            changeDisplay();
         }
 
         private void btnStartGame_Click(object sender, EventArgs e)

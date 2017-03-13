@@ -22,3 +22,17 @@ C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug
 C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.MainMenu.resources
 C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.StartGameSettings.resources
 C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.AboutBox.resources
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\bin\Debug\Lego Death Race.exe.config
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego Death Race.exe
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego Death Race.pdb
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\bin\Debug\Lego Death Race.exe
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\bin\Debug\Lego Death Race.pdb
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego Death Race.csprojResolveAssemblyReference.cache
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego_Death_Race.AboutBox.resources
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego_Death_Race.Form1.resources
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego_Death_Race.Main.resources
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego_Death_Race.MainMenu.resources
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego_Death_Race.PlayerControl.resources
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego_Death_Race.Properties.Resources.resources
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego_Death_Race.StartGameSettings.resources
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego Death Race.csproj.GenerateResource.Cache
