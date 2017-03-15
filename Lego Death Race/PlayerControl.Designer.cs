@@ -30,6 +30,7 @@
         {
             this.tboxName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lboxLapTimes = new System.Windows.Forms.ListBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -37,16 +38,15 @@
             this.lblFastestLapTime = new System.Windows.Forms.Label();
             this.lblFastestSpeed = new System.Windows.Forms.Label();
             this.lblCurrentSpeed = new System.Windows.Forms.Label();
-            this.lblCurrentLap = new System.Windows.Forms.Label();
-            this.lboxLapTimes = new System.Windows.Forms.ListBox();
-            this.lblRank = new System.Windows.Forms.Label();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.lblCurrentLap = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.lblRank = new System.Windows.Forms.Label();
             this.pboxPowerup = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -61,9 +61,11 @@
             // 
             // tboxName
             // 
+            this.tboxName.BackColor = System.Drawing.SystemColors.Window;
             this.tboxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxName.Location = new System.Drawing.Point(105, 25);
             this.tboxName.Name = "tboxName";
+            this.tboxName.ReadOnly = true;
             this.tboxName.Size = new System.Drawing.Size(314, 53);
             this.tboxName.TabIndex = 2;
             this.tboxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -92,6 +94,15 @@
             this.groupBox1.Size = new System.Drawing.Size(518, 418);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
+            // 
+            // lboxLapTimes
+            // 
+            this.lboxLapTimes.FormattingEnabled = true;
+            this.lboxLapTimes.ItemHeight = 16;
+            this.lboxLapTimes.Location = new System.Drawing.Point(6, 188);
+            this.lboxLapTimes.Name = "lboxLapTimes";
+            this.lboxLapTimes.Size = new System.Drawing.Size(135, 212);
+            this.lboxLapTimes.TabIndex = 20;
             // 
             // label7
             // 
@@ -170,38 +181,6 @@
             this.lblCurrentSpeed.Text = "label1";
             this.lblCurrentSpeed.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // lblCurrentLap
-            // 
-            this.lblCurrentLap.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentLap.Location = new System.Drawing.Point(79, 34);
-            this.lblCurrentLap.Margin = new System.Windows.Forms.Padding(0);
-            this.lblCurrentLap.Name = "lblCurrentLap";
-            this.lblCurrentLap.Size = new System.Drawing.Size(97, 96);
-            this.lblCurrentLap.TabIndex = 11;
-            this.lblCurrentLap.Text = "10";
-            this.lblCurrentLap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lboxLapTimes
-            // 
-            this.lboxLapTimes.FormattingEnabled = true;
-            this.lboxLapTimes.ItemHeight = 16;
-            this.lboxLapTimes.Location = new System.Drawing.Point(6, 188);
-            this.lboxLapTimes.Name = "lboxLapTimes";
-            this.lboxLapTimes.Size = new System.Drawing.Size(135, 212);
-            this.lboxLapTimes.TabIndex = 20;
-            // 
-            // lblRank
-            // 
-            this.lblRank.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblRank.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRank.Location = new System.Drawing.Point(3, 3);
-            this.lblRank.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.lblRank.Name = "lblRank";
-            this.lblRank.Size = new System.Drawing.Size(96, 96);
-            this.lblRank.TabIndex = 21;
-            this.lblRank.Text = "1";
-            this.lblRank.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // pictureBox5
             // 
             this.pictureBox5.Image = global::Lego_Death_Race.Properties.Resources.icon_lap_fastest;
@@ -212,6 +191,17 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 6;
             this.pictureBox5.TabStop = false;
+            // 
+            // lblCurrentLap
+            // 
+            this.lblCurrentLap.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentLap.Location = new System.Drawing.Point(79, 34);
+            this.lblCurrentLap.Margin = new System.Windows.Forms.Padding(0);
+            this.lblCurrentLap.Name = "lblCurrentLap";
+            this.lblCurrentLap.Size = new System.Drawing.Size(97, 96);
+            this.lblCurrentLap.TabIndex = 11;
+            this.lblCurrentLap.Text = "10";
+            this.lblCurrentLap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox4
             // 
@@ -278,6 +268,18 @@
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox8.TabIndex = 9;
             this.pictureBox8.TabStop = false;
+            // 
+            // lblRank
+            // 
+            this.lblRank.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblRank.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRank.Location = new System.Drawing.Point(3, 3);
+            this.lblRank.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.lblRank.Name = "lblRank";
+            this.lblRank.Size = new System.Drawing.Size(96, 96);
+            this.lblRank.TabIndex = 21;
+            this.lblRank.Text = "1";
+            this.lblRank.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pboxPowerup
             // 

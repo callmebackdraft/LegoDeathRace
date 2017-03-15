@@ -24,7 +24,7 @@ namespace Lego_Death_Race
             {
                 // Start the game
                 Main main = new Main();
-                main.Init(sgs.PlayerCount);
+                main.Init(sgs.PlayerCount, sgs.PlayerNames);
                 this.Visible = false;
                 main.ShowDialog();
 

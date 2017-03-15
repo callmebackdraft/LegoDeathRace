@@ -13,6 +13,7 @@ namespace Lego_Death_Race
     public partial class StartGameSettings : Form
     {
         public int PlayerCount { get; set; }
+        public List<string> PlayerNames { get; set; }
         public StartGameSettings()
         {
             InitializeComponent();
@@ -46,6 +47,13 @@ namespace Lego_Death_Race
 
         private void btnStartGame_Click(object sender, EventArgs e)
         {
+            PlayerNames = new List<string>();
+            PlayerNames.Add(tboxPlayerName0.Text);
+            PlayerNames.Add(tboxPlayerName1.Text);
+            if(PlayerCount > 2)
+                PlayerNames.Add(tboxPlayerName2.Text);
+            if(PlayerCount > 3)
+                PlayerNames.Add(tboxPlayerName3.Text);
             this.DialogResult = DialogResult.OK;
         }
     }

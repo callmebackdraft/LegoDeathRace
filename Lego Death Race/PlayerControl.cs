@@ -18,6 +18,11 @@ namespace Lego_Death_Race
             InitializeComponent();
         }
 
+        public void SetName(string name)
+        {
+            tboxName.Text = name;
+        }
+
         public void AddLapTime(int time)
         {
             mLapTimes.Add(time);

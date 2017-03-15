@@ -87,6 +87,7 @@
             // tboxPlayerName0
             // 
             this.tboxPlayerName0.Location = new System.Drawing.Point(82, 73);
+            this.tboxPlayerName0.MaxLength = 12;
             this.tboxPlayerName0.Name = "tboxPlayerName0";
             this.tboxPlayerName0.Size = new System.Drawing.Size(150, 22);
             this.tboxPlayerName0.TabIndex = 3;
@@ -112,6 +113,7 @@
             // tboxPlayerName1
             // 
             this.tboxPlayerName1.Location = new System.Drawing.Point(82, 101);
+            this.tboxPlayerName1.MaxLength = 12;
             this.tboxPlayerName1.Name = "tboxPlayerName1";
             this.tboxPlayerName1.Size = new System.Drawing.Size(150, 22);
             this.tboxPlayerName1.TabIndex = 5;
@@ -128,6 +130,7 @@
             // tboxPlayerName2
             // 
             this.tboxPlayerName2.Location = new System.Drawing.Point(82, 129);
+            this.tboxPlayerName2.MaxLength = 12;
             this.tboxPlayerName2.Name = "tboxPlayerName2";
             this.tboxPlayerName2.Size = new System.Drawing.Size(150, 22);
             this.tboxPlayerName2.TabIndex = 7;
@@ -144,6 +147,7 @@
             // tboxPlayerName3
             // 
             this.tboxPlayerName3.Location = new System.Drawing.Point(82, 157);
+            this.tboxPlayerName3.MaxLength = 12;
             this.tboxPlayerName3.Name = "tboxPlayerName3";
             this.tboxPlayerName3.Size = new System.Drawing.Size(150, 22);
             this.tboxPlayerName3.TabIndex = 9;

@@ -18,7 +18,7 @@ namespace Lego_Death_Race
             InitializeComponent();
         }
 
-        public void Init(int playerCount)
+        public void Init(int playerCount, List<string> PlayerNames)
         {
             // Create PlayerControls and add them to the form               - Assuming a max of 4 players
             for (int i = 0; i < playerCount; i++)
@@ -26,6 +26,7 @@ namespace Lego_Death_Race
                 PlayerControl p = new PlayerControl();
                 int yOffset = pnlSeperator.Location.Y + pnlSeperator.Size.Height;
                 p.Location = new Point(i * p.Size.Width, yOffset);
+                p.SetName(PlayerNames[i]);
                 /*switch (i)
                 {
                     case 0:
