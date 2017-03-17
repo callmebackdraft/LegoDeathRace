@@ -161,6 +161,36 @@
   <ItemGroup>
     <None Include="Resources\icon_slowdown.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FIVE.WAV" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FOUR.WAV" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GO!.WAV" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ONE.WAV" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\THREE.WAV" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TWO.WAV" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_car_connected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_car_disconnected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_controller_connected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_controller_disconnected.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

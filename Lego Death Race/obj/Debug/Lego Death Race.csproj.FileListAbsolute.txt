@@ -36,3 +36,7 @@ C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race
 C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego_Death_Race.Properties.Resources.resources
 C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego_Death_Race.StartGameSettings.resources
 C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\obj\Debug\Lego Death Race.csproj.GenerateResource.Cache
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\SharpDX.dll
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\SharpDX.XInput.dll
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\SharpDX.xml
+C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\SharpDX.XInput.xml
