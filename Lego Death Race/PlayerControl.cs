@@ -16,10 +16,17 @@ namespace Lego_Death_Race
     {
         private List<int> mLapTimes = new List<int>();
         private List<int> mPowerUpCount = new List<int>();
+        //public bool mGameRunning = false;
+        public bool mReadOutController = true;      // This is set to false when this control is destroyed. This is the condition in the read out controller thread.
         public PlayerControl()
         {
             InitializeComponent();
         }
+
+        /*public ~PlayerControl()
+        {
+
+        }*/
 
         public Controller controller;
         public State stateNew;
@@ -60,7 +67,7 @@ namespace Lego_Death_Race
 
         private void loopThread()
         {
-            while (true)
+            while (mReadOutController)
             {
                 ReadOutController();
                 Thread.Sleep(10);
