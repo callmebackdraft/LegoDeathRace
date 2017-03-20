@@ -24,7 +24,7 @@ namespace Lego_Death_Race
             InitializeComponent();
         }
 
-        public void Init(int playerCount, List<string> PlayerNames)
+        public void Init(int playerCount, List<string> playerNames, List<string> ev3ComPorts)
         {
             // Create PlayerControls and add them to the form               - Assuming a max of 4 players
             for (int i = 0; i < playerCount; i++)
@@ -34,7 +34,7 @@ namespace Lego_Death_Race
                 p.Location = new Point(i * p.Size.Width, yOffset);
                 mPlayers.Add(p);
                 this.Controls.Add(p);
-                p.InitPlayer(i, PlayerNames[i]);
+                p.InitPlayer(i, ev3ComPorts[i], playerNames[i]);
             }
             // Resize the window so the PlayerControls fits in perfectly    - Assuming a max of 4 playres
 

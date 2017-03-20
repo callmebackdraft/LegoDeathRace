@@ -21,6 +21,7 @@ namespace Lego_Death_Race
         private int mPlayerId;
         private Controller mController;
         private EV3Messenger mEV3Messenger;
+        private string mComPort;
 
         // Constructor
         public PlayerControl()
@@ -35,9 +36,10 @@ namespace Lego_Death_Race
             mGameRunning = false;
         }
 
-        public void InitPlayer(int playerId, string playerName)
+        public void InitPlayer(int playerId, string comPort, string playerName)
         {
             mPlayerId = playerId;
+            mComPort = comPort;
             // Reset this form
             ResetPlayer();
             // Set the name of the player
