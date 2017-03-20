@@ -20,6 +20,7 @@ namespace Lego_Death_Race
         public bool mGameRunning = true;      // This is set to false when this control is destroyed or by the parent. This is the condition in the read out controller thread.
         private int mPlayerId;
         private Controller mController;
+        private EV3Messenger mEV3Messenger;
 
         // Constructor
         public PlayerControl()
@@ -86,69 +87,121 @@ namespace Lego_Death_Race
                 if (btnPressed.Contains("A"))
                 {
                     Console.WriteLine("YAAAAY A PRESSED");
+                    sendEV3Message("","");
                 }
                 else if (btnPressed.Contains("B"))
                 {
                     Console.WriteLine("YAAAAY B PRESSED");
+                    sendEV3Message("", "");
                 }
                 else if (btnPressed.Contains("X"))
                 {
                     Console.WriteLine("YAAAAY X PRESSED");
+                    sendEV3Message("", "");
                 }
                 else if (btnPressed.Contains("Y"))
                 {
                     Console.WriteLine("YAAAAY Y PRESSED");
+                    sendEV3Message("", "");
                 }
                 else if (btnPressed.Contains("RightShoulder"))
                 {
                     Console.WriteLine("YAAAAY RightShoulder PRESSED");
+                    sendEV3Message("", "");
                 }
                 else if (btnPressed.Contains("LeftShoulder"))
                 {
                     Console.WriteLine("YAAAAY LeftShoulder PRESSED");
+                    sendEV3Message("", "");
                 }
                 if (stateNew.Gamepad.LeftTrigger >= 100)
                 {
                     Console.WriteLine("REVERSE!!!!!!");
+                    sendEV3Message("Move", "Backward");
                 }
                 else if (stateNew.Gamepad.RightTrigger >= 100)
                 {
                     Console.WriteLine("FORWARD!!!!!!");
+                    sendEV3Message("Move", "Forward");
                 }
                 else if (stateNew.Gamepad.RightTrigger <= 100 && stateNew.Gamepad.LeftTrigger <= 100)
                 {
                     //Console.WriteLine("STOP!!!!!");
+                    sendEV3Message("Move", "Stop");
                 }
 
 
                 if (btnPressed.Contains("DPadUp"))
                 {
                     Console.WriteLine("UP!!!!");
+                    sendEV3Message("", "");
                 }
                 else if (btnPressed.Contains("DPadDown"))
                 {
                     Console.WriteLine("DOWN!!!!");
+                    sendEV3Message("", "");
                 }
                 else if (btnPressed.Contains("DPadLeft"))
                 {
                     Console.WriteLine("LEFT!!!!");
-                    Vibration v;
-                    v.LeftMotorSpeed = ushort.MaxValue;
-                    v.RightMotorSpeed = ushort.MaxValue;
-                    mController.SetVibration(v);
+                    sendEV3Message("Turn", "Left");
                 }
                 else if (btnPressed.Contains("DPadRight"))
                 {
                     Console.WriteLine("RIGHT!!!!");
+                    sendEV3Message("Turn", "Right");  
                 }
+                else
+                {
+                    sendEV3Message("Turn", "Stop");
+                }
+            //Vibration v;
+            //v.LeftMotorSpeed = ushort.MaxValue;
+            //v.RightMotorSpeed = ushort.MaxValue;
+            //mController.SetVibration(v);
         }
         #endregion
         #region EV3
 
+        private void connectToBrick()
+        {
+            mEV3Messenger = new EV3Messenger();
+        }
         
         private void sendEV3Message(string header, string message)
         {
+            if (mEV3Messenger.IsConnected)
+            {
+                mEV3Messenger.SendMessage(header, message);
+            }
+        }
 
+        private void receiveEV3Message()
+        {
+            
+            if (mEV3Messenger.IsConnected)
+            {
+                EV3Message message = mEV3Messenger.ReadMessage();
+                if (message != null)
+                {
+                    if (message.MailboxTitle == "Message")
+                    {
+                        //custom messages;
+                    }
+                    else if (message.MailboxTitle == "Speed")
+                    {
+                        SetCurrentSpeed(Convert.ToInt16(message.ValueAsNumber));
+                    }
+                    else if (message.MailboxTitle == "Tag")
+                    {
+                        if (message.ToString() == "Finish")
+                        {
+                            //finish sequence
+                        }
+                        else SetPowerUp(Convert.ToInt16(message.ValueAsNumber));
+                    }
+                }
+            }
         }
 
 
@@ -187,7 +240,7 @@ namespace Lego_Death_Race
                 lblRank.Text = rank.ToString();
         }
 
-        public void SetPowerUp(byte powerUp)
+        public void SetPowerUp(int powerUp)
         {
             if(pboxPowerup.InvokeRequired)
             {
