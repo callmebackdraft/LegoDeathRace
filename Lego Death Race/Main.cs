@@ -44,30 +44,6 @@ namespace Lego_Death_Race
             BlackOutGui(true);
         }
 
-        private void findBT()
-        {
-            ManagementObjectSearcher serialSearcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_SerialPort");
-
-            var query = from ManagementObject s in serialSearcher.Get()
-                        select new { Name = s["Name"], DeviceID = s["DeviceID"], PNPDeviceID = s["PNPDeviceID"] }; // DeviceID -- > PNPDeviceID
-
-            foreach (var port in query)
-            {
-                Console.WriteLine("{0} - {1}", port.DeviceID, port.Name);
-                var pnpDeviceId = port.PNPDeviceID.ToString();
-
-                if (pnpDeviceId.Contains("BTHENUM"))
-                {
-                    var bluetoothDeviceAddress = pnpDeviceId.Split('&')[4].Split('_')[0];
-                    if (bluetoothDeviceAddress.Length == 12 && bluetoothDeviceAddress != "000000000000")
-                    {
-                        //gets called when a com port with a BT address is found
-                        //serialPortSelectionBox.Items.Add(port.DeviceID + " - " + bluetoothDeviceAddress);
-                    }
-                }
-            }
-        }
-
         private void BlackOutGui(bool blackOut)
         {
             if (blackOut)

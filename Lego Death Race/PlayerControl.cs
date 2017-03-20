@@ -46,6 +46,7 @@ namespace Lego_Death_Race
             tboxName.Text = playerName;
             // Init the controller
             InitController();
+            connectToBrick();
         }
 
         #region Controller
@@ -168,6 +169,7 @@ namespace Lego_Death_Race
         private void connectToBrick()
         {
             mEV3Messenger = new EV3Messenger();
+            mEV3Messenger.Connect(mComPort);
         }
         
         private void sendEV3Message(string header, string message)
