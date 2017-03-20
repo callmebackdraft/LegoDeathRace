@@ -16,75 +16,72 @@ namespace Lego_Death_Race
     {
         private List<int> mLapTimes = new List<int>();
         private List<int> mPowerUpCount = new List<int>();
-        //public bool mGameRunning = false;
-        public bool mReadOutController = true;      // This is set to false when this control is destroyed. This is the condition in the read out controller thread.
+        public bool mGameRunning = true;      // This is set to false when this control is destroyed or by the parent. This is the condition in the read out controller thread.
+        private int mPlayerId;
+        private Controller mController;
+
+        // Constructor
         public PlayerControl()
         {
             InitializeComponent();
         }
 
-        /*public ~PlayerControl()
+        // Destructor
+        ~PlayerControl()
         {
-
-        }*/
-
-        public Controller controller;
-        public State stateNew;
-        public string btnPressed;
-        public int playerIndex;
-
-        #region Controller
-        public void initController(int playerIndex)
-        {
-            this.playerIndex = playerIndex;
-            switch (playerIndex)
-            {
-                case 0:
-                    controller = new Controller(SharpDX.XInput.UserIndex.One);
-                    break;
-                case 1:
-                    controller = new Controller(SharpDX.XInput.UserIndex.Two);
-                    break;
-                case 2:
-                    controller = new Controller(SharpDX.XInput.UserIndex.Three);
-                    break;
-                case 3:
-                    controller = new Controller(SharpDX.XInput.UserIndex.Four);
-                    break;
-            }
-
-            if (controller.IsConnected)
-            {
-                Console.WriteLine("Controller "+  (playerIndex+1) +" Connected");
-                Thread readControl = new Thread(new ThreadStart(loopThread));
-                readControl.Start();
-            }
-            else if (!controller.IsConnected)
-            {
-                MessageBox.Show("No Controller connected via USB, please check the connection and click the Connect button");
-            }
+            // Set mControlAlive to false, so running threads get destroyed
+            mGameRunning = false;
         }
 
-        private void loopThread()
+        public void InitPlayer(int playerId, string playerName)
         {
-            while (mReadOutController)
+            mPlayerId = playerId;
+            // Reset this form
+            ResetPlayer();
+            // Set the name of the player
+            tboxName.Text = playerName;
+            // Init the controller
+            InitController();
+        }
+
+        #region Controller
+        private void InitController()
+        {
+            // Create controller instance
+            switch (mPlayerId)
             {
-                ReadOutController();
+                case 0:
+                    mController = new Controller(SharpDX.XInput.UserIndex.One);
+                    break;
+                case 1:
+                    mController = new Controller(SharpDX.XInput.UserIndex.Two);
+                    break;
+                case 2:
+                    mController = new Controller(SharpDX.XInput.UserIndex.Three);
+                    break;
+                case 3:
+                    mController = new Controller(SharpDX.XInput.UserIndex.Four);
+                    break;
+            }
+            // Start the controller handler thread
+            new Thread(new ThreadStart(Xbox360ControllerThread)).Start();
+        }
+
+        private void Xbox360ControllerThread()
+        {
+            while (mGameRunning)
+            {
+                SetControllerConnected(mController.IsConnected);
+                if(mController.IsConnected)
+                    ReadOutController();
                 Thread.Sleep(10);
             }
         }
 
         private void ReadOutController()
         {
-            if (!controller.IsConnected)
-            {
-                Console.WriteLine("Controller: " + playerIndex + " is not connected");
-            }
-            else
-            {
-                stateNew = controller.GetState();
-
-                btnPressed = stateNew.Gamepad.Buttons.ToString();
+                State stateNew = mController.GetState();
+                string btnPressed = stateNew.Gamepad.Buttons.ToString();
                 if (btnPressed.Contains("A"))
                 {
                     Console.WriteLine("YAAAAY A PRESSED");
@@ -137,25 +134,18 @@ namespace Lego_Death_Race
                     Vibration v;
                     v.LeftMotorSpeed = ushort.MaxValue;
                     v.RightMotorSpeed = ushort.MaxValue;
-                    controller.SetVibration(v);
+                    mController.SetVibration(v);
                 }
                 else if (btnPressed.Contains("DPadRight"))
                 {
                     Console.WriteLine("RIGHT!!!!");
                 }
-            }
         }
-
         #endregion
         #region EV3
 
         #endregion
         #region GUI related stuff       - Will clean this up later
-        public void SetName(string name)
-        {
-            tboxName.Text = name;
-        }
-
         public void AddLapTime(int time)
         {
             if (lboxLapTimes.InvokeRequired)
@@ -316,7 +306,7 @@ namespace Lego_Death_Race
             return null;
         }
 
-        public void ResetPlayer()
+        private void ResetPlayer()
         {
             // Reset rank
             SetRank(0);
