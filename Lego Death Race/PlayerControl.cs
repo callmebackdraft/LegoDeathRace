@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using SharpDX.XInput;
+using EV3MessengerLib;
 
 namespace Lego_Death_Race
 {
@@ -143,6 +144,17 @@ namespace Lego_Death_Race
         }
         #endregion
         #region EV3
+
+        
+        private void sendEV3Message(string header, string message)
+        {
+
+        }
+
+
+
+
+
 
         #endregion
         #region GUI related stuff       - Will clean this up later
