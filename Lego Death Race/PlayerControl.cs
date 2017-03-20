@@ -89,42 +89,47 @@ namespace Lego_Death_Race
                 string btnPressed = stateNew.Gamepad.Buttons.ToString();
                 if (btnPressed.Contains("A"))
                 {
-                    Console.WriteLine("YAAAAY A PRESSED");
+                    //Console.WriteLine("YAAAAY A PRESSED");
                     sendEV3Message("","");
                 }
                 else if (btnPressed.Contains("B"))
                 {
-                    Console.WriteLine("YAAAAY B PRESSED");
+                    //Console.WriteLine("YAAAAY B PRESSED");
                     sendEV3Message("", "");
                 }
                 else if (btnPressed.Contains("X"))
                 {
-                    Console.WriteLine("YAAAAY X PRESSED");
+                    //Console.WriteLine("YAAAAY X PRESSED");
                     sendEV3Message("", "");
                 }
                 else if (btnPressed.Contains("Y"))
                 {
-                    Console.WriteLine("YAAAAY Y PRESSED");
+                    //Console.WriteLine("YAAAAY Y PRESSED");
                     sendEV3Message("", "");
                 }
                 else if (btnPressed.Contains("RightShoulder"))
                 {
-                    Console.WriteLine("YAAAAY RightShoulder PRESSED");
-                    sendEV3Message("", "");
+                    //Console.WriteLine("YAAAAY RightShoulder PRESSED");
+                    sendEV3Message("Powerup", "Use");
                 }
                 else if (btnPressed.Contains("LeftShoulder"))
                 {
-                    Console.WriteLine("YAAAAY LeftShoulder PRESSED");
-                    sendEV3Message("", "");
+                    //Console.WriteLine("YAAAAY LeftShoulder PRESSED");
+                    sendEV3Message("Boostmode", "Boost");
                 }
+                else
+            {
+                sendEV3Message("Powerup", "stop");
+                sendEV3Message("Boostmode", "Stopfast");
+            }
                 if (stateNew.Gamepad.LeftTrigger >= 100)
                 {
-                    Console.WriteLine("REVERSE!!!!!!");
+                    //Console.WriteLine("REVERSE!!!!!!");
                     sendEV3Message("Move", "Backward");
                 }
                 else if (stateNew.Gamepad.RightTrigger >= 100)
                 {
-                    Console.WriteLine("FORWARD!!!!!!");
+                    //Console.WriteLine("FORWARD!!!!!!");
                     sendEV3Message("Move", "Forward");
                 }
                 else if (stateNew.Gamepad.RightTrigger <= 100 && stateNew.Gamepad.LeftTrigger <= 100)
@@ -136,22 +141,22 @@ namespace Lego_Death_Race
 
                 if (btnPressed.Contains("DPadUp"))
                 {
-                    Console.WriteLine("UP!!!!");
+                    //Console.WriteLine("UP!!!!");
                     sendEV3Message("", "");
                 }
                 else if (btnPressed.Contains("DPadDown"))
                 {
-                    Console.WriteLine("DOWN!!!!");
+                    //Console.WriteLine("DOWN!!!!");
                     sendEV3Message("", "");
                 }
                 else if (btnPressed.Contains("DPadLeft"))
                 {
-                    Console.WriteLine("LEFT!!!!");
+                    //Console.WriteLine("LEFT!!!!");
                     sendEV3Message("Turn", "Left");
                 }
                 else if (btnPressed.Contains("DPadRight"))
                 {
-                    Console.WriteLine("RIGHT!!!!");
+                    //Console.WriteLine("RIGHT!!!!");
                     sendEV3Message("Turn", "Right");  
                 }
                 else
@@ -177,6 +182,7 @@ namespace Lego_Death_Race
             if (mEV3Messenger.IsConnected)
             {
                 mEV3Messenger.SendMessage(header, message);
+                Console.WriteLine(mPlayerId + " " + header + " " + message);
             }
         }
 
