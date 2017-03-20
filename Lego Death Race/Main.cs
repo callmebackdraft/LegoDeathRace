@@ -35,6 +35,7 @@ namespace Lego_Death_Race
                 mPlayers.Add(p);
                 this.Controls.Add(p);
                 p.ResetPlayer();
+                p.initController(i);
             }
             // Resize the window so the PlayerControls fits in perfectly    - Assuming a max of 4 playres
 

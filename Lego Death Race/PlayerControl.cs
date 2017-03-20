@@ -6,7 +6,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
+using SharpDX.XInput;
 
 namespace Lego_Death_Race
 {
@@ -19,15 +21,124 @@ namespace Lego_Death_Race
             InitializeComponent();
         }
 
-        #region Controller
-        private void InitController()
-        {
+        public Controller controller;
+        public State stateNew;
+        public string btnPressed;
+        public int playerIndex;
 
+        #region Controller
+        public void initController(int playerIndex)
+        {
+            this.playerIndex = playerIndex;
+            switch (playerIndex)
+            {
+                case 0:
+                    controller = new Controller(SharpDX.XInput.UserIndex.One);
+                    break;
+                case 1:
+                    controller = new Controller(SharpDX.XInput.UserIndex.Two);
+                    break;
+                case 2:
+                    controller = new Controller(SharpDX.XInput.UserIndex.Three);
+                    break;
+                case 3:
+                    controller = new Controller(SharpDX.XInput.UserIndex.Four);
+                    break;
+            }
+
+            if (controller.IsConnected)
+            {
+                Console.WriteLine("Controller "+  (playerIndex+1) +" Connected");
+                Thread readControl = new Thread(new ThreadStart(loopThread));
+                readControl.Start();
+            }
+            else if (!controller.IsConnected)
+            {
+                MessageBox.Show("No Controller connected via USB, please check the connection and click the Connect button");
+            }
         }
+
+        private void loopThread()
+        {
+            while (true)
+            {
+                ReadOutController();
+                Thread.Sleep(10);
+            }
+        }
+
         private void ReadOutController()
         {
+            if (!controller.IsConnected)
+            {
+                Console.WriteLine("Controller: " + playerIndex + " is not connected");
+            }
+            else
+            {
+                stateNew = controller.GetState();
 
+                btnPressed = stateNew.Gamepad.Buttons.ToString();
+                if (btnPressed.Contains("A"))
+                {
+                    Console.WriteLine("YAAAAY A PRESSED");
+                }
+                else if (btnPressed.Contains("B"))
+                {
+                    Console.WriteLine("YAAAAY B PRESSED");
+                }
+                else if (btnPressed.Contains("X"))
+                {
+                    Console.WriteLine("YAAAAY X PRESSED");
+                }
+                else if (btnPressed.Contains("Y"))
+                {
+                    Console.WriteLine("YAAAAY Y PRESSED");
+                }
+                else if (btnPressed.Contains("RightShoulder"))
+                {
+                    Console.WriteLine("YAAAAY RightShoulder PRESSED");
+                }
+                else if (btnPressed.Contains("LeftShoulder"))
+                {
+                    Console.WriteLine("YAAAAY LeftShoulder PRESSED");
+                }
+                if (stateNew.Gamepad.LeftTrigger >= 100)
+                {
+                    Console.WriteLine("REVERSE!!!!!!");
+                }
+                else if (stateNew.Gamepad.RightTrigger >= 100)
+                {
+                    Console.WriteLine("FORWARD!!!!!!");
+                }
+                else if (stateNew.Gamepad.RightTrigger <= 100 && stateNew.Gamepad.LeftTrigger <= 100)
+                {
+                    //Console.WriteLine("STOP!!!!!");
+                }
+
+
+                if (btnPressed.Contains("DPadUp"))
+                {
+                    Console.WriteLine("UP!!!!");
+                }
+                else if (btnPressed.Contains("DPadDown"))
+                {
+                    Console.WriteLine("DOWN!!!!");
+                }
+                else if (btnPressed.Contains("DPadLeft"))
+                {
+                    Console.WriteLine("LEFT!!!!");
+                    Vibration v;
+                    v.LeftMotorSpeed = ushort.MaxValue;
+                    v.RightMotorSpeed = ushort.MaxValue;
+                    controller.SetVibration(v);
+                }
+                else if (btnPressed.Contains("DPadRight"))
+                {
+                    Console.WriteLine("RIGHT!!!!");
+                }
+            }
         }
+
         #endregion
         #region EV3
 
