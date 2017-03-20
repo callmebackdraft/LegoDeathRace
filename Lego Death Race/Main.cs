@@ -31,11 +31,9 @@ namespace Lego_Death_Race
                 PlayerControl p = new PlayerControl();
                 int yOffset = pnlSeperator.Location.Y + pnlSeperator.Size.Height;
                 p.Location = new Point(i * p.Size.Width, yOffset);
-                p.SetName(PlayerNames[i]);
                 mPlayers.Add(p);
                 this.Controls.Add(p);
-                p.ResetPlayer();
-                p.initController(i);
+                p.InitPlayer(i, PlayerNames[i]);
             }
             // Resize the window so the PlayerControls fits in perfectly    - Assuming a max of 4 playres
 
@@ -63,7 +61,12 @@ namespace Lego_Death_Race
         {
             //BlackOutGui(false);
             if (mGameRunning)
+            {
                 mGameRunning = false;
+                // Set this var to false in the playercontrols aswell. This will stop the threads for controllers, EV3s, ect.
+                foreach (PlayerControl p in mPlayers)
+                    p.mGameRunning = false;
+            }
             else
                 this.Close();
         }

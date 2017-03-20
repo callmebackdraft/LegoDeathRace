@@ -38,21 +38,19 @@
             this.lblFastestLapTime = new System.Windows.Forms.Label();
             this.lblFastestSpeed = new System.Windows.Forms.Label();
             this.lblCurrentSpeed = new System.Windows.Forms.Label();
-            this.lblCurrentLap = new System.Windows.Forms.Label();
-            this.lblRank = new System.Windows.Forms.Label();
-            this.pboxCarConnected = new System.Windows.Forms.PictureBox();
-            this.pboxControllerConnected = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.lblCurrentLap = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.lblRank = new System.Windows.Forms.Label();
+            this.pboxCarConnected = new System.Windows.Forms.PictureBox();
+            this.pboxControllerConnected = new System.Windows.Forms.PictureBox();
             this.pboxPowerup = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxCarConnected)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxControllerConnected)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -60,6 +58,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxCarConnected)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxControllerConnected)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPowerup)).BeginInit();
             this.SuspendLayout();
             // 
@@ -186,49 +186,6 @@
             this.lblCurrentSpeed.Text = "label1";
             this.lblCurrentSpeed.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // lblCurrentLap
-            // 
-            this.lblCurrentLap.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentLap.Location = new System.Drawing.Point(79, 34);
-            this.lblCurrentLap.Margin = new System.Windows.Forms.Padding(0);
-            this.lblCurrentLap.Name = "lblCurrentLap";
-            this.lblCurrentLap.Size = new System.Drawing.Size(97, 96);
-            this.lblCurrentLap.TabIndex = 11;
-            this.lblCurrentLap.Text = "10";
-            this.lblCurrentLap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblRank
-            // 
-            this.lblRank.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblRank.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRank.Location = new System.Drawing.Point(3, 3);
-            this.lblRank.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
-            this.lblRank.Name = "lblRank";
-            this.lblRank.Size = new System.Drawing.Size(96, 96);
-            this.lblRank.TabIndex = 21;
-            this.lblRank.Text = "1";
-            this.lblRank.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pboxCarConnected
-            // 
-            this.pboxCarConnected.Image = global::Lego_Death_Race.Properties.Resources.icon_car_connected;
-            this.pboxCarConnected.Location = new System.Drawing.Point(265, 542);
-            this.pboxCarConnected.Name = "pboxCarConnected";
-            this.pboxCarConnected.Size = new System.Drawing.Size(96, 96);
-            this.pboxCarConnected.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pboxCarConnected.TabIndex = 23;
-            this.pboxCarConnected.TabStop = false;
-            // 
-            // pboxControllerConnected
-            // 
-            this.pboxControllerConnected.Image = global::Lego_Death_Race.Properties.Resources.icon_controller_connected;
-            this.pboxControllerConnected.Location = new System.Drawing.Point(163, 542);
-            this.pboxControllerConnected.Name = "pboxControllerConnected";
-            this.pboxControllerConnected.Size = new System.Drawing.Size(96, 96);
-            this.pboxControllerConnected.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pboxControllerConnected.TabIndex = 22;
-            this.pboxControllerConnected.TabStop = false;
-            // 
             // pictureBox5
             // 
             this.pictureBox5.Image = global::Lego_Death_Race.Properties.Resources.icon_lap_fastest;
@@ -239,6 +196,17 @@
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 6;
             this.pictureBox5.TabStop = false;
+            // 
+            // lblCurrentLap
+            // 
+            this.lblCurrentLap.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentLap.Location = new System.Drawing.Point(79, 34);
+            this.lblCurrentLap.Margin = new System.Windows.Forms.Padding(0);
+            this.lblCurrentLap.Name = "lblCurrentLap";
+            this.lblCurrentLap.Size = new System.Drawing.Size(97, 96);
+            this.lblCurrentLap.TabIndex = 11;
+            this.lblCurrentLap.Text = "10";
+            this.lblCurrentLap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox4
             // 
@@ -306,6 +274,38 @@
             this.pictureBox8.TabIndex = 9;
             this.pictureBox8.TabStop = false;
             // 
+            // lblRank
+            // 
+            this.lblRank.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblRank.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRank.Location = new System.Drawing.Point(3, 3);
+            this.lblRank.Margin = new System.Windows.Forms.Padding(3, 0, 3, 16);
+            this.lblRank.Name = "lblRank";
+            this.lblRank.Size = new System.Drawing.Size(96, 96);
+            this.lblRank.TabIndex = 21;
+            this.lblRank.Text = "1";
+            this.lblRank.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pboxCarConnected
+            // 
+            this.pboxCarConnected.Image = global::Lego_Death_Race.Properties.Resources.icon_car_connected;
+            this.pboxCarConnected.Location = new System.Drawing.Point(163, 542);
+            this.pboxCarConnected.Name = "pboxCarConnected";
+            this.pboxCarConnected.Size = new System.Drawing.Size(96, 96);
+            this.pboxCarConnected.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pboxCarConnected.TabIndex = 23;
+            this.pboxCarConnected.TabStop = false;
+            // 
+            // pboxControllerConnected
+            // 
+            this.pboxControllerConnected.Image = global::Lego_Death_Race.Properties.Resources.icon_controller_connected;
+            this.pboxControllerConnected.Location = new System.Drawing.Point(265, 542);
+            this.pboxControllerConnected.Name = "pboxControllerConnected";
+            this.pboxControllerConnected.Size = new System.Drawing.Size(96, 96);
+            this.pboxControllerConnected.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pboxControllerConnected.TabIndex = 22;
+            this.pboxControllerConnected.TabStop = false;
+            // 
             // pboxPowerup
             // 
             this.pboxPowerup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -329,8 +329,6 @@
             this.Name = "PlayerControl";
             this.Size = new System.Drawing.Size(524, 650);
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pboxCarConnected)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxControllerConnected)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -338,6 +336,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxCarConnected)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxControllerConnected)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxPowerup)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
