@@ -54,7 +54,8 @@ namespace Lego_Death_Race
         private List<string> GetEv3ComPorts()
         {
             List<string> serialPorts = new List<string>();
-            ManagementObjectSearcher serialSearcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_SerialPort");
+            serialPorts.Add("");
+            /*ManagementObjectSearcher serialSearcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_SerialPort");
 
             var query = from ManagementObject s in serialSearcher.Get()
                         select new { Name = s["Name"], DeviceID = s["DeviceID"], PNPDeviceID = s["PNPDeviceID"] }; // DeviceID -- > PNPDeviceID
@@ -74,7 +75,7 @@ namespace Lego_Death_Race
                         serialPorts.Add(port.DeviceID.ToString());
                     }
                 }
-            }
+            }*/
             return serialPorts;
         }
     }

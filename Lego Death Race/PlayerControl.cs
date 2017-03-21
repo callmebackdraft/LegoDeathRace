@@ -180,7 +180,7 @@ namespace Lego_Death_Race
 
         private void ConnnectToBrickViaMMono()
         {
-            ev3 = new Brick<Sensor, Sensor, Sensor, Sensor>(mComPort);
+            ev3 = new Brick<Sensor, Sensor, Sensor, Sensor>("COM3");
             try
             {
                 ev3.Connection.Open();
