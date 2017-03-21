@@ -22,6 +22,7 @@ namespace Lego_Death_Race
         private int mPlayerId;
         private Controller mController;
         private EV3Messenger mEV3Messenger;
+        private Brick<Sensor, Sensor, Sensor, Sensor> ev3 = null;
 
         private string mComPort;
 
@@ -36,6 +37,8 @@ namespace Lego_Death_Race
         {
             // Set mControlAlive to false, so running threads get destroyed
             mGameRunning = false;
+            // Properly close connection with the EV3 brick
+            ev3.Connection.Close();
         }
 
         public void InitPlayer(int playerId, string comPort, string playerName)
@@ -49,8 +52,8 @@ namespace Lego_Death_Race
             // Init the controller
             InitController();
             Console.WriteLine("trying to connect to Brick");
-            connectToBrick();
-            Console.WriteLine(mEV3Messenger.IsConnected);
+            ConnnectToBrickViaMMono();
+            //Console.WriteLine(mEV3Messenger.IsConnected);
         }
 
         #region Controller
@@ -174,14 +177,38 @@ namespace Lego_Death_Race
         }
         #endregion
         #region EV3
-        
-        private void connectViaMonoBrick()
+
+        private void ConnnectToBrickViaMMono()
+        {
+            ev3 = new Brick<Sensor, Sensor, Sensor, Sensor>(mComPort);
+            try
+            {
+                ev3.Connection.Open();
+                Console.WriteLine("MONO: ev3 connection established YAY!");
+            }
+            catch (Exception e)
+            {
+                //ev3.Connection.Close();     // Not sure if this is necessary. But was in finally statement, might be because a failed open connections needs to be closed or because of an exception thrown after sucessfully opening the connection.
+                Console.WriteLine("MONO: Unable to connect :(");
+                Console.WriteLine("MONO: " + e.StackTrace);
+                Console.WriteLine("MONO: Error: " + e.Message);
+            }
+        }
+
+        private void CloseConnectionWithEV3()
+        {
+            if (ev3 != null)    // Connection might still be null
+                ev3.Connection.Close();
+        }
+
+        /*private void connectViaMonoBrick()
         {
             var ev3 = new Brick<Sensor, Sensor, Sensor, Sensor>("COM3");
             try
             {
                 ev3.Connection.Open();
                 ev3.Mailbox.Send("Race","GO");
+                Console.WriteLine("sending ev3 message");
             }
             catch (Exception e)
             {
@@ -191,26 +218,10 @@ namespace Lego_Death_Race
             }
             finally
             {
+                Console.WriteLine("closing ev3 connection");
                 ev3.Connection.Close();
             }
-        }
-
-
-        private void connectToBrick()
-        {
-            Console.WriteLine("trying to connect to: " + mComPort);
-            mEV3Messenger = new EV3Messenger();
-            connectViaMonoBrick();
-            //if(mEV3Messenger.Connect(mComPort))
-            //{
-            //    Console.WriteLine("succesfully connected to Brick");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Failed to connect to serial port '" + mComPort + "'.\n"
-            //        + "Is your EV3 connected to that serial port? Or is it using another one?");
-            //}
-        }
+        }*/
         
         public void sendEV3Message(string header, string message)
         {
