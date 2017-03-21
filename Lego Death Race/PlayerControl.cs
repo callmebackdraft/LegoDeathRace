@@ -10,6 +10,7 @@ using System.Threading;
 using System.Windows.Forms;
 using SharpDX.XInput;
 using EV3MessengerLib;
+using MonoBrick.EV3;
 
 namespace Lego_Death_Race
 {
@@ -21,6 +22,7 @@ namespace Lego_Death_Race
         private int mPlayerId;
         private Controller mController;
         private EV3Messenger mEV3Messenger;
+
         private string mComPort;
 
         // Constructor
@@ -46,7 +48,7 @@ namespace Lego_Death_Race
             tboxName.Text = playerName;
             // Init the controller
             InitController();
-            Console.WriteLine("tryin to connect to Brick");
+            Console.WriteLine("trying to connect to Brick");
             connectToBrick();
             Console.WriteLine(mEV3Messenger.IsConnected);
         }
@@ -87,84 +89,84 @@ namespace Lego_Death_Race
 
         private void ReadOutController()
         {
-                State stateNew = mController.GetState();
-                string btnPressed = stateNew.Gamepad.Buttons.ToString();
-                if (btnPressed.Contains("A"))
-                {
-                    //Console.WriteLine("YAAAAY A PRESSED");
-                    sendEV3Message("","");
-                }
-                else if (btnPressed.Contains("B"))
-                {
-                    //Console.WriteLine("YAAAAY B PRESSED");
-                    sendEV3Message("", "");
-                }
-                else if (btnPressed.Contains("X"))
-                {
-                    //Console.WriteLine("YAAAAY X PRESSED");
-                    sendEV3Message("", "");
-                }
-                else if (btnPressed.Contains("Y"))
-                {
-                    //Console.WriteLine("YAAAAY Y PRESSED");
-                    sendEV3Message("", "");
-                }
-                else if (btnPressed.Contains("RightShoulder"))
-                {
-                    //Console.WriteLine("YAAAAY RightShoulder PRESSED");
-                    sendEV3Message("Powerup", "Use");
-                }
-                else if (btnPressed.Contains("LeftShoulder"))
-                {
-                    //Console.WriteLine("YAAAAY LeftShoulder PRESSED");
-                    sendEV3Message("Boostmode", "Boost");
-                }
-                else
-            {
-                sendEV3Message("Powerup", "stop");
-                sendEV3Message("Boostmode", "Stopfast");
-            }
-                if (stateNew.Gamepad.LeftTrigger >= 100)
-                {
-                    //Console.WriteLine("REVERSE!!!!!!");
-                    sendEV3Message("Move", "Backward");
-                }
-                else if (stateNew.Gamepad.RightTrigger >= 100)
-                {
-                    //Console.WriteLine("FORWARD!!!!!!");
-                    sendEV3Message("Move", "Forward");
-                }
-                else if (stateNew.Gamepad.RightTrigger <= 100 && stateNew.Gamepad.LeftTrigger <= 100)
-                {
-                    //Console.WriteLine("STOP!!!!!");
-                    sendEV3Message("Move", "Stop");
-                }
+                //    State stateNew = mController.GetState();
+                //    string btnPressed = "path";//stateNew.Gamepad.Buttons.ToString();
+                //    if (btnPressed.Contains("A"))
+                //    {
+                //        Console.WriteLine("YAAAAY A PRESSED");
+                //        sendEV3Message("","");
+                //    }
+                //    else if (btnPressed.Contains("B"))
+                //    {
+                //        Console.WriteLine("YAAAAY B PRESSED");
+                //        sendEV3Message("", "");
+                //    }
+                //    else if (btnPressed.Contains("X"))
+                //    {
+                //        Console.WriteLine("YAAAAY X PRESSED");
+                //        sendEV3Message("", "");
+                //    }
+                //    else if (btnPressed.Contains("Y"))
+                //    {
+                //        Console.WriteLine("YAAAAY Y PRESSED");
+                //        sendEV3Message("", "");
+                //    }
+                //    else if (btnPressed.Contains("RightShoulder"))
+                //    {
+                //        Console.WriteLine("YAAAAY RightShoulder PRESSED");
+                //        sendEV3Message("Powerup", "Use");
+                //    }
+                //    else if (btnPressed.Contains("LeftShoulder"))
+                //    {
+                //        Console.WriteLine("YAAAAY LeftShoulder PRESSED");
+                //        sendEV3Message("Boostmode", "Boost");
+                //    }
+                //    else
+                //{
+                //    sendEV3Message("Powerup", "stop");
+                //    sendEV3Message("Boostmode", "Stopfast");
+                //}
+                //    if (stateNew.Gamepad.LeftTrigger >= 100)
+                //    {
+                //        Console.WriteLine("REVERSE!!!!!!");
+                //        sendEV3Message("Move", "Backward");
+                //    }
+                //    else if (stateNew.Gamepad.RightTrigger >= 100)
+                //    {
+                //        Console.WriteLine("FORWARD!!!!!!");
+                //        sendEV3Message("Move", "Forward");
+                //    }
+                //    else if (stateNew.Gamepad.RightTrigger <= 100 && stateNew.Gamepad.LeftTrigger <= 100)
+                //    {
+                //        Console.WriteLine("STOP!!!!!");
+                //        sendEV3Message("Move", "Stop");
+                //    }
 
 
-                if (btnPressed.Contains("DPadUp"))
-                {
-                    //Console.WriteLine("UP!!!!");
-                    sendEV3Message("", "");
-                }
-                else if (btnPressed.Contains("DPadDown"))
-                {
-                    //Console.WriteLine("DOWN!!!!");
-                    sendEV3Message("", "");
-                }
-                else if (btnPressed.Contains("DPadLeft"))
-                {
-                    //Console.WriteLine("LEFT!!!!");
-                    sendEV3Message("Turn", "Left");
-                }
-                else if (btnPressed.Contains("DPadRight"))
-                {
-                    //Console.WriteLine("RIGHT!!!!");
-                    sendEV3Message("Turn", "Right");  
-                }
-                else
-                {
-                    sendEV3Message("Turn", "Stop");
-                }
+                //    if (btnPressed.Contains("DPadUp"))
+                //    {
+                //        Console.WriteLine("UP!!!!");
+                //        sendEV3Message("", "");
+                //    }
+                //    else if (btnPressed.Contains("DPadDown"))
+                //    {
+                //        Console.WriteLine("DOWN!!!!");
+                //        sendEV3Message("", "");
+                //    }
+                //    else if (btnPressed.Contains("DPadLeft"))
+                //    {
+                //        Console.WriteLine("LEFT!!!!");
+                //        sendEV3Message("Turn", "Left");
+                //    }
+                //    else if (btnPressed.Contains("DPadRight"))
+                //    {
+                //        Console.WriteLine("RIGHT!!!!");
+                //        sendEV3Message("Turn", "Right");  
+                //    }
+                //    else
+                //    {
+                //        sendEV3Message("Turn", "Stop");
+                //    }
             //Vibration v;
             //v.LeftMotorSpeed = ushort.MaxValue;
             //v.RightMotorSpeed = ushort.MaxValue;
@@ -172,20 +174,42 @@ namespace Lego_Death_Race
         }
         #endregion
         #region EV3
+        
+        private void connectViaMonoBrick()
+        {
+            var ev3 = new Brick<Sensor, Sensor, Sensor, Sensor>("COM3");
+            try
+            {
+                ev3.Connection.Open();
+                ev3.Mailbox.Send("Race","GO");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unable to connect");
+                Console.WriteLine(e.StackTrace);
+                Console.WriteLine("Error: " + e.Message);
+            }
+            finally
+            {
+                ev3.Connection.Close();
+            }
+        }
+
 
         private void connectToBrick()
         {
             Console.WriteLine("trying to connect to: " + mComPort);
             mEV3Messenger = new EV3Messenger();
-            if(mEV3Messenger.Connect(mComPort))
-            {
-                Console.WriteLine("succesfully connected to Brick");
-            }
-            else
-            {
-                Console.WriteLine("Failed to connect to serial port '" + mComPort + "'.\n"
-                    + "Is your EV3 connected to that serial port? Or is it using another one?");
-            }
+            connectViaMonoBrick();
+            //if(mEV3Messenger.Connect(mComPort))
+            //{
+            //    Console.WriteLine("succesfully connected to Brick");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Failed to connect to serial port '" + mComPort + "'.\n"
+            //        + "Is your EV3 connected to that serial port? Or is it using another one?");
+            //}
         }
         
         public void sendEV3Message(string header, string message)

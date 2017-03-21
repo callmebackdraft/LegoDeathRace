@@ -82,3 +82,6 @@ C:\Users\Dirk-Jan de Beijer\Source\Repos\callmebackdraft\LegoDeathRace\Lego Deat
 C:\Users\Dirk-Jan de Beijer\Source\Repos\callmebackdraft\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.Properties.Resources.resources
 C:\Users\Dirk-Jan de Beijer\Source\Repos\callmebackdraft\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.StartGameSettings.resources
 C:\Users\Dirk-Jan de Beijer\Source\Repos\callmebackdraft\LegoDeathRace\Lego Death Race\obj\Debug\Lego Death Race.csproj.GenerateResource.Cache
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\bin\Debug\MonoBrick.dll
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\bin\Debug\LibUsbDotNet.dll
+C:\Users\CallMeBackdraft\Desktop\Coding\FHICT\OIS11\Repositories\Lego Death Race\bin\Debug\MonoBrick.xml
