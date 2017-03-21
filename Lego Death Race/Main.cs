@@ -123,7 +123,7 @@ namespace Lego_Death_Race
             mGameRunning = true;
             foreach (PlayerControl i in mPlayers)
             {
-                i.sendEV3Message("Race","Go");
+                i.sendEV3Message("Race","GO");
             }
             // Save the start time
             mStartTime = DateTime.Now;

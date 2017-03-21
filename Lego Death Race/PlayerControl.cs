@@ -177,7 +177,15 @@ namespace Lego_Death_Race
         {
             Console.WriteLine("trying to connect to: " + mComPort);
             mEV3Messenger = new EV3Messenger();
-            mEV3Messenger.Connect(mComPort);
+            if(mEV3Messenger.Connect(mComPort))
+            {
+                Console.WriteLine("succesfully connected to Brick");
+            }
+            else
+            {
+                Console.WriteLine("Failed to connect to serial port '" + mComPort + "'.\n"
+                    + "Is your EV3 connected to that serial port? Or is it using another one?");
+            }
         }
         
         public void sendEV3Message(string header, string message)
