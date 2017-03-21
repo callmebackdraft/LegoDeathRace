@@ -38,7 +38,7 @@ namespace Lego_Death_Race
             // Set mControlAlive to false, so running threads get destroyed
             mGameRunning = false;
             // Properly close connection with the EV3 brick
-            ev3.Connection.Close();
+            CloseConnectionWithEV3();
         }
 
         public void InitPlayer(int playerId, string comPort, string playerName)
