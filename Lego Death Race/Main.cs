@@ -121,6 +121,10 @@ namespace Lego_Death_Race
             // Race has started
             // Set game running var to true
             mGameRunning = true;
+            foreach (PlayerControl i in mPlayers)
+            {
+                i.sendEV3Message("Race","Go");
+            }
             // Save the start time
             mStartTime = DateTime.Now;
             mElapsedTimeUpdater = new Thread(new ThreadStart(UpdateElapsedTimeThread));

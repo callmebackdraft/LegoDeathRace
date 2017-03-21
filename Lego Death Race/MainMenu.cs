@@ -28,6 +28,7 @@ namespace Lego_Death_Race
                 // If we cannot find enough EV3 ports, do not start the game and give an error
                 if (ev3Ports.Count < sgs.PlayerCount)
                 {
+                    // Start the game
                     MessageBox.Show("Er zijn niet genoeg EV3 bricks met de computer verbonden. Verbind op zijn minst 1 EV3 brick per player." + Environment.NewLine + "Er zijn momenteel " + ev3Ports.Count + " EV3 bricks verbonden.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
@@ -66,6 +67,7 @@ namespace Lego_Death_Race
                 if (pnpDeviceId.Contains("BTHENUM"))
                 {
                     var bluetoothDeviceAddress = pnpDeviceId.Split('&')[4].Split('_')[0];
+                    Console.WriteLine(bluetoothDeviceAddress);
                     if (bluetoothDeviceAddress.Length == 12 && bluetoothDeviceAddress != "000000000000")
                     {
                         //gets called when a com port with a BT address is found

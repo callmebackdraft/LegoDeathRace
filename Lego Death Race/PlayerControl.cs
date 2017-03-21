@@ -46,7 +46,9 @@ namespace Lego_Death_Race
             tboxName.Text = playerName;
             // Init the controller
             InitController();
+            Console.WriteLine("tryin to connect to Brick");
             connectToBrick();
+            Console.WriteLine(mEV3Messenger.IsConnected);
         }
 
         #region Controller
@@ -173,12 +175,17 @@ namespace Lego_Death_Race
 
         private void connectToBrick()
         {
+            Console.WriteLine("trying to connect to: " + mComPort);
             mEV3Messenger = new EV3Messenger();
             mEV3Messenger.Connect(mComPort);
         }
         
-        private void sendEV3Message(string header, string message)
+        public void sendEV3Message(string header, string message)
         {
+            if (header == "Race")
+            {
+                Console.WriteLine("trying to send message: " + message + " With header: " + header);
+            }
             if (mEV3Messenger.IsConnected)
             {
                 mEV3Messenger.SendMessage(header, message);
@@ -209,6 +216,7 @@ namespace Lego_Death_Race
                             //finish sequence
                         }
                         else SetPowerUp(Convert.ToInt16(message.ValueAsNumber));
+                        
                     }
                 }
             }
