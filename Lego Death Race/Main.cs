@@ -10,6 +10,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Management;
+using Lego_Death_Race.Networking;
+using Lego_Death_Race.Networking.Packets;
 
 namespace Lego_Death_Race
 {
@@ -19,12 +21,14 @@ namespace Lego_Death_Race
         private DateTime mStartTime;
         List<PlayerControl> mPlayers = new List<PlayerControl>();
         private bool mGameRunning = false;
+        ServerSocket mServerSocket = null;
+
         public Main()
         {
             InitializeComponent();
         }
 
-        public void Init(int playerCount, List<string> playerNames, List<string> ev3ComPorts)
+        public void Init(int playerCount, List<string> playerNames)
         {
             // Create PlayerControls and add them to the form               - Assuming a max of 4 players
             for (int i = 0; i < playerCount; i++)
@@ -34,7 +38,7 @@ namespace Lego_Death_Race
                 p.Location = new Point(i * p.Size.Width, yOffset);
                 mPlayers.Add(p);
                 this.Controls.Add(p);
-                p.InitPlayer(i, ev3ComPorts[i], playerNames[i]);
+                p.InitPlayer(i, playerNames[i]);
             }
             // Resize the window so the PlayerControls fits in perfectly    - Assuming a max of 4 playres
 
@@ -42,6 +46,27 @@ namespace Lego_Death_Race
             // Span the seperator over the entire width of this form
             pnlSeperator.Size = new Size(this.ClientSize.Width, pnlSeperator.Height);
             BlackOutGui(true);
+
+            // Create server socket
+            mServerSocket = new ServerSocket(playerCount);
+            mServerSocket.BrickConnectionStatusChanged += MServerSocket_BrickConnectionStatusChanged;
+        }
+
+        private void MServerSocket_BrickConnectionStatusChanged(object sender, ConnectedEventArgs e)
+        {
+            // This works bec
+            int index = GetPlayerListIndexById(((ConnectionToBrick)sender).PlayerIndex);
+            if (index < 0)
+                return;
+            mPlayers[index].SetCarConnected(e.Connected);
+        }
+
+        private int GetPlayerListIndexById(int id)
+        {
+            for (int i = 0; i < mPlayers.Count; i++)
+                if (mPlayers[i].PlayerId == id)
+                    return i;
+            return -1;
         }
 
         private void BlackOutGui(bool blackOut)
@@ -90,7 +115,7 @@ namespace Lego_Death_Race
             // Start counting down
             CT_SetCountDownLabelText("5");
             SoundPlayer sp = new SoundPlayer(Properties.Resources.FIVE);
-            sp.Play();
+            /*sp.Play();
             Thread.Sleep(1000);
             CT_SetCountDownLabelText("4");
             sp = new SoundPlayer(Properties.Resources.FOUR);
@@ -107,7 +132,7 @@ namespace Lego_Death_Race
             CT_SetCountDownLabelText("1");
             sp = new SoundPlayer(Properties.Resources.ONE);
             sp.Play();
-            Thread.Sleep(1000);
+            Thread.Sleep(1000);*/
             CT_SetCountDownLabelText("GO!");
             sp = new SoundPlayer(Properties.Resources.GO);
             sp.Play();
@@ -121,16 +146,41 @@ namespace Lego_Death_Race
             // Race has started
             // Set game running var to true
             mGameRunning = true;
-            foreach (PlayerControl i in mPlayers)
-            {
-                i.sendEV3Message("Race","GO");
-            }
+            
             // Save the start time
             mStartTime = DateTime.Now;
             mElapsedTimeUpdater = new Thread(new ThreadStart(UpdateElapsedTimeThread));
             mElapsedTimeUpdater.Start();
             // Enable quit button
             CT_SetQuitButtonEnabled(true);
+
+            while(mGameRunning)
+            {
+                // Send controller states to the ev3 bricks
+                for(int i=0;i<mPlayers.Count;i++)
+                {
+                    /*foreach (ConnectionToBrick ctb in mServerSocket.mConnectedBricks)
+                    {
+                        if (ctb.PlayerIndex == mPlayers[i].PlayerId)
+                        {
+                            PckControllerButtonState p = new PckControllerButtonState(mPlayers[i].ControllerState);
+                            ctb.SendData(p);
+                            break;
+                        }
+                    }*/
+                    for(int j=0;j<mServerSocket.mConnectedBricks.Count;j++)
+                    {
+                        if(mServerSocket.mConnectedBricks[j].PlayerIndex == mPlayers[i].PlayerId)
+                        {
+                            PckControllerButtonState p = new PckControllerButtonState(mPlayers[i].ControllerState);
+                            mServerSocket.mConnectedBricks[j].SendData(p);
+                            break;
+                        }
+                    }
+                }
+                Thread.Sleep(10);
+            }
+            Console.WriteLine("Exited main loop");
         }
 
         #region Threads

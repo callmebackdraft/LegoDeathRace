@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using SharpDX.XInput;
-using EV3MessengerLib;
-using MonoBrick.EV3;
 
 namespace Lego_Death_Race
 {
@@ -19,12 +17,11 @@ namespace Lego_Death_Race
         private List<int> mLapTimes = new List<int>();
         private List<int> mPowerUpCount = new List<int>();
         public bool mGameRunning = true;      // This is set to false when this control is destroyed or by the parent. This is the condition in the read out controller thread.
-        private int mPlayerId;
+        //private int mPlayerId;
+        public int PlayerId { get; set; }
         private Controller mController;
-        private EV3Messenger mEV3Messenger;
-        private Brick<Sensor, Sensor, Sensor, Sensor> ev3 = null;
-
-        private string mComPort;
+        public bool ControllerConnected { get { return mController.IsConnected; } }
+        public State ControllerState { get { return mController.GetState(); } }
 
         // Constructor
         public PlayerControl()
@@ -37,30 +34,25 @@ namespace Lego_Death_Race
         {
             // Set mControlAlive to false, so running threads get destroyed
             mGameRunning = false;
-            // Properly close connection with the EV3 brick
-            CloseConnectionWithEV3();
         }
 
-        public void InitPlayer(int playerId, string comPort, string playerName)
+        public void InitPlayer(int playerId, string playerName)
         {
-            mPlayerId = playerId;
-            mComPort = comPort;
+            //mPlayerId = playerId;
+            PlayerId = playerId;
             // Reset this form
             ResetPlayer();
             // Set the name of the player
             tboxName.Text = playerName;
             // Init the controller
             InitController();
-            Console.WriteLine("trying to connect to Brick");
-            ConnnectToBrickViaMMono();
-            //Console.WriteLine(mEV3Messenger.IsConnected);
         }
 
         #region Controller
         private void InitController()
         {
             // Create controller instance
-            switch (mPlayerId)
+            switch (PlayerId)
             {
                 case 0:
                     mController = new Controller(SharpDX.XInput.UserIndex.One);
@@ -84,192 +76,9 @@ namespace Lego_Death_Race
             while (mGameRunning)
             {
                 SetControllerConnected(mController.IsConnected);
-                if(mController.IsConnected)
-                    ReadOutController();
                 Thread.Sleep(10);
             }
         }
-
-        private void ReadOutController()
-        {
-                //    State stateNew = mController.GetState();
-                //    string btnPressed = "path";//stateNew.Gamepad.Buttons.ToString();
-                //    if (btnPressed.Contains("A"))
-                //    {
-                //        Console.WriteLine("YAAAAY A PRESSED");
-                //        sendEV3Message("","");
-                //    }
-                //    else if (btnPressed.Contains("B"))
-                //    {
-                //        Console.WriteLine("YAAAAY B PRESSED");
-                //        sendEV3Message("", "");
-                //    }
-                //    else if (btnPressed.Contains("X"))
-                //    {
-                //        Console.WriteLine("YAAAAY X PRESSED");
-                //        sendEV3Message("", "");
-                //    }
-                //    else if (btnPressed.Contains("Y"))
-                //    {
-                //        Console.WriteLine("YAAAAY Y PRESSED");
-                //        sendEV3Message("", "");
-                //    }
-                //    else if (btnPressed.Contains("RightShoulder"))
-                //    {
-                //        Console.WriteLine("YAAAAY RightShoulder PRESSED");
-                //        sendEV3Message("Powerup", "Use");
-                //    }
-                //    else if (btnPressed.Contains("LeftShoulder"))
-                //    {
-                //        Console.WriteLine("YAAAAY LeftShoulder PRESSED");
-                //        sendEV3Message("Boostmode", "Boost");
-                //    }
-                //    else
-                //{
-                //    sendEV3Message("Powerup", "stop");
-                //    sendEV3Message("Boostmode", "Stopfast");
-                //}
-                //    if (stateNew.Gamepad.LeftTrigger >= 100)
-                //    {
-                //        Console.WriteLine("REVERSE!!!!!!");
-                //        sendEV3Message("Move", "Backward");
-                //    }
-                //    else if (stateNew.Gamepad.RightTrigger >= 100)
-                //    {
-                //        Console.WriteLine("FORWARD!!!!!!");
-                //        sendEV3Message("Move", "Forward");
-                //    }
-                //    else if (stateNew.Gamepad.RightTrigger <= 100 && stateNew.Gamepad.LeftTrigger <= 100)
-                //    {
-                //        Console.WriteLine("STOP!!!!!");
-                //        sendEV3Message("Move", "Stop");
-                //    }
-
-
-                //    if (btnPressed.Contains("DPadUp"))
-                //    {
-                //        Console.WriteLine("UP!!!!");
-                //        sendEV3Message("", "");
-                //    }
-                //    else if (btnPressed.Contains("DPadDown"))
-                //    {
-                //        Console.WriteLine("DOWN!!!!");
-                //        sendEV3Message("", "");
-                //    }
-                //    else if (btnPressed.Contains("DPadLeft"))
-                //    {
-                //        Console.WriteLine("LEFT!!!!");
-                //        sendEV3Message("Turn", "Left");
-                //    }
-                //    else if (btnPressed.Contains("DPadRight"))
-                //    {
-                //        Console.WriteLine("RIGHT!!!!");
-                //        sendEV3Message("Turn", "Right");  
-                //    }
-                //    else
-                //    {
-                //        sendEV3Message("Turn", "Stop");
-                //    }
-            //Vibration v;
-            //v.LeftMotorSpeed = ushort.MaxValue;
-            //v.RightMotorSpeed = ushort.MaxValue;
-            //mController.SetVibration(v);
-        }
-        #endregion
-        #region EV3
-
-        private void ConnnectToBrickViaMMono()
-        {
-            ev3 = new Brick<Sensor, Sensor, Sensor, Sensor>("COM3");
-            try
-            {
-                ev3.Connection.Open();
-                Console.WriteLine("MONO: ev3 connection established YAY!");
-            }
-            catch (Exception e)
-            {
-                //ev3.Connection.Close();     // Not sure if this is necessary. But was in finally statement, might be because a failed open connections needs to be closed or because of an exception thrown after sucessfully opening the connection.
-                Console.WriteLine("MONO: Unable to connect :(");
-                Console.WriteLine("MONO: " + e.StackTrace);
-                Console.WriteLine("MONO: Error: " + e.Message);
-            }
-        }
-
-        private void CloseConnectionWithEV3()
-        {
-            if (ev3 != null)    // Connection might still be null
-                ev3.Connection.Close();
-        }
-
-        /*private void connectViaMonoBrick()
-        {
-            var ev3 = new Brick<Sensor, Sensor, Sensor, Sensor>("COM3");
-            try
-            {
-                ev3.Connection.Open();
-                ev3.Mailbox.Send("Race","GO");
-                Console.WriteLine("sending ev3 message");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Unable to connect");
-                Console.WriteLine(e.StackTrace);
-                Console.WriteLine("Error: " + e.Message);
-            }
-            finally
-            {
-                Console.WriteLine("closing ev3 connection");
-                ev3.Connection.Close();
-            }
-        }*/
-        
-        public void sendEV3Message(string header, string message)
-        {
-            /*if (header == "Race")
-            {
-                Console.WriteLine("trying to send message: " + message + " With header: " + header);
-            }
-            if (mEV3Messenger.IsConnected)
-            {
-                mEV3Messenger.SendMessage(header, message);
-                Console.WriteLine(mPlayerId + " " + header + " " + message);
-            }*/
-        }
-
-        private void receiveEV3Message()
-        {
-            
-            if (mEV3Messenger.IsConnected)
-            {
-                EV3Message message = mEV3Messenger.ReadMessage();
-                if (message != null)
-                {
-                    if (message.MailboxTitle == "Message")
-                    {
-                        //custom messages;
-                    }
-                    else if (message.MailboxTitle == "Speed")
-                    {
-                        SetCurrentSpeed(Convert.ToInt16(message.ValueAsNumber));
-                    }
-                    else if (message.MailboxTitle == "Tag")
-                    {
-                        if (message.ToString() == "Finish")
-                        {
-                            //finish sequence
-                        }
-                        else SetPowerUp(Convert.ToInt16(message.ValueAsNumber));
-                        
-                    }
-                }
-            }
-        }
-
-
-
-
-
-
         #endregion
         #region GUI related stuff       - Will clean this up later
         public void AddLapTime(int time)
@@ -449,6 +258,9 @@ namespace Lego_Death_Race
                 mPowerUpCount.Add(-1);
                 IncrementPowerUpCount(i);
             }
+            // Reset connection statusses
+            SetCarConnected(false);
+            SetControllerConnected(false);
         }
 
         private void SetControllerConnected(bool connected)
@@ -468,7 +280,7 @@ namespace Lego_Death_Race
                     pboxControllerConnected.Image = Properties.Resources.icon_controller_disconnected;
             }
         }
-        private void SetCarConnected(bool connected)
+        public void SetCarConnected(bool connected)
         {
             if (pboxCarConnected.InvokeRequired)
             {
@@ -480,9 +292,9 @@ namespace Lego_Death_Race
             else
             {
                 if (connected)
-                    pboxCarConnected.Image = Properties.Resources.icon_controller_connected;
+                    pboxCarConnected.Image = Properties.Resources.icon_car_connected;
                 else
-                    pboxCarConnected.Image = Properties.Resources.icon_controller_disconnected;
+                    pboxCarConnected.Image = Properties.Resources.icon_car_disconnected;
             }
         }
         #endregion

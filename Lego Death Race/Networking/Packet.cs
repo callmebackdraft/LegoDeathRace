@@ -9,15 +9,7 @@ namespace Lego_Death_Race.Networking
     public class Packet
     {
         #region PacketTypes
-        public const ushort PT_INFOREQUEST = 100;
-        public const ushort PT_GETPUMPS = 101;
-        public const ushort PT_GETLIVETEMPS = 102;
-        public const ushort PT_GETVARS = 103;
-        public const ushort PT_SETPUMPVALVESETTING = 104;
-        public const ushort PT_SETPUMP = 105;
-        public const ushort PT_SETBOILER = 106;
-        public const ushort PT_SETVARS = 107;
-        public const ushort PT_GETSUBSYSTEMCONNECTIONSTATUS = 108;
+        public const ushort PT_CONTROLLER_BUTTON_STATE = 0;
         #endregion
 
         public const ushort HEADERLENGTH = 6;
@@ -62,6 +54,13 @@ namespace Lego_Death_Race.Networking
                 return (ushort)((byte1 << 8) + byte2);
             else
                 return (ushort)((byte2 << 8) + byte1);
+        }
+
+        protected void WriteUInt32(UInt32 value, int offset)
+        {
+            byte[] tempBuf = new byte[4];
+            tempBuf = BitConverter.GetBytes(value);
+            Buffer.BlockCopy(tempBuf, 0, _buffer, offset, 4);
         }
 
         protected float ReadFloat(int offset)

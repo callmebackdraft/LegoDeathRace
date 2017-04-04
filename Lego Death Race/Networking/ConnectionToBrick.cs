@@ -21,7 +21,7 @@ namespace Lego_Death_Race.Networking
 
     public class ConnectionToBrick
     {
-        public delegate void PacketRecievedEventHandler(object source, PacketEventArgs e);
+        public delegate void PacketRecievedEventHandler(object sender, PacketEventArgs e);
         public event PacketRecievedEventHandler PacketRecieved;
 
         public delegate void ConnectionStatusChangedEventHandler(object sender, ConnectedEventArgs e);
@@ -30,7 +30,7 @@ namespace Lego_Death_Race.Networking
         public int PlayerIndex { get; set; }
 
         //set vars
-        private const int port = 6528;               //masterserver port
+        private const int port = 8965;               //masterserver port
 
         //private IPEndPoint ipEndPoint = new IPEndPoint(IPAddress.Parse(ip), port);
         private Socket mSocket = null;
@@ -49,8 +49,13 @@ namespace Lego_Death_Race.Networking
         {
             mSocket = s;
             OnConnectionStatusChanged(s.Connected);
-            switch(((IPEndPoint)mSocket.LocalEndPoint).Address.ToString())
+            string ip = ((IPEndPoint)mSocket.RemoteEndPoint).Address.ToString();
+            //PlayerIndex = Convert.ToInt16(ip.Substring(ip.Length - 3, 3));
+            switch (ip.Substring(ip.Length - 3, 3))
             {
+                case "118":
+                    PlayerIndex = 0;
+                    break;
                 default:
                     PlayerIndex = -1;
                     break;
@@ -80,6 +85,9 @@ namespace Lego_Death_Race.Networking
             {
                 //if(mKeepUpdating || (!mKeepUpdating && p.Type != Packet.PT_INFOREQUEST))
                 mSocket.Send(p.Data, 0, p.Length, 0);
+                foreach (byte b in p.Data)
+                    Console.Write((int)b + " ");
+                Console.WriteLine();
             }
             catch (Exception ex)
             {
@@ -94,21 +102,6 @@ namespace Lego_Death_Race.Networking
         {
             while (mSocket.Connected)
             {
-                /*P_InfoRequest p = new P_InfoRequest(Packet.PT_GETLIVETEMPS);
-                SendData(p);
-                Thread.Sleep(250);
-
-                p = new P_InfoRequest(Packet.PT_GETPUMPS);
-                SendData(p);
-                Thread.Sleep(250);
-
-                p = new P_InfoRequest(Packet.PT_GETVARS);
-                SendData(p);
-                Thread.Sleep(250);
-
-                p = new P_InfoRequest(Packet.PT_GETSUBSYSTEMCONNECTIONSTATUS);
-                SendData(p);
-                Thread.Sleep(250);*/
             }
         }
 

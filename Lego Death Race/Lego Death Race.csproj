@@ -38,13 +38,6 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EV3MessengerLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\EV3MessengerLib.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoBrick">
-      <HintPath>..\MonoBrick.dll</HintPath>
-    </Reference>
     <Reference Include="SharpDX, Version=3.1.1.0, Culture=neutral, PublicKeyToken=b4dcf0f35e5521f1, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpDX.3.1.1\lib\net45\SharpDX.dll</HintPath>
       <Private>True</Private>
@@ -93,6 +86,7 @@
     </Compile>
     <Compile Include="Networking\ConnectionToBrick.cs" />
     <Compile Include="Networking\Packet.cs" />
+    <Compile Include="Networking\Packets\PckControllerButtonState.cs" />
     <Compile Include="Networking\ServerSocket.cs" />
     <Compile Include="PlayerControl.cs">
       <SubType>UserControl</SubType>
@@ -207,9 +201,7 @@
   <ItemGroup>
     <None Include="Resources\icon_controller_disconnected.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Networking\Packets\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

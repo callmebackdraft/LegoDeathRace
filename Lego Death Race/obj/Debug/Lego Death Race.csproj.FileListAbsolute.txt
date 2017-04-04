@@ -90,12 +90,8 @@ C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego Deat
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego Death Race.pdb
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\Lego Death Race.exe
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\Lego Death Race.pdb
-C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\EV3MessengerLib.dll
-C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\MonoBrick.dll
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\SharpDX.dll
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\SharpDX.XInput.dll
-C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\LibUsbDotNet.dll
-C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\MonoBrick.xml
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\SharpDX.xml
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\SharpDX.XInput.xml
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego Death Race.csprojResolveAssemblyReference.cache

@@ -11,14 +11,24 @@ namespace Lego_Death_Race.Networking
 {
     public class ServerSocket
     {
-        private const short mPort = 24309;
+        public delegate void PacketRecievedEventHandler(object sender, PacketEventArgs e);
+        public event PacketRecievedEventHandler BrickPacketRecieved;
+
+        public delegate void ConnectionStatusChangedEventHandler(object sender, ConnectedEventArgs e);
+        public event ConnectionStatusChangedEventHandler BrickConnectionStatusChanged;
+
+        private const short mPort = 8965;
         // Server socket
         private Socket mServerSocket = null;
 
-        private List<ConnectionToBrick> mConnectedBricks = new List<ConnectionToBrick>();
+        public List<ConnectionToBrick> mConnectedBricks = new List<ConnectionToBrick>();
+        private int mPlayerCount;
+
+        public List<ConnectionToBrick> ConnectedBricks { get { return mConnectedBricks; } }
 
         public ServerSocket(int playerCount)
         {
+            mPlayerCount = playerCount;
             // Establish the local endpoint for the socket.  
             // The DNS name of the computer  
             // running the listener is "host.contoso.com".  
@@ -29,20 +39,36 @@ namespace Lego_Death_Race.Networking
             mServerSocket.Bind(localEndPoint);
             mServerSocket.Listen(4);
 
-            while(true)
+            new Thread(ListenForConnections).Start();
+        }
+
+        private void ListenForConnections()
+        {
+            while (true)
             {
-                if (mConnectedBricks.Count < playerCount)
+                if (mConnectedBricks.Count < mPlayerCount)
                 {
                     Socket s = mServerSocket.Accept();
                     ConnectionToBrick ctb = new ConnectionToBrick(s);
                     ctb.ConnectionStatusChanged += Ctb_ConnectionStatusChanged;
+                    ctb.PacketRecieved += Ctb_PacketRecieved;
                     mConnectedBricks.Add(ctb);
                 }
             }
         }
 
+        private void Ctb_PacketRecieved(object sender, PacketEventArgs e)
+        {
+            // Trigger event for listeners on the ServerSocket class
+            if (BrickPacketRecieved != null)
+                BrickPacketRecieved(sender, e);
+        }
+
         private void Ctb_ConnectionStatusChanged(object sender, ConnectedEventArgs e)
         {
+            // Trigger event for listeners on the ServerSocket class
+            if (BrickConnectionStatusChanged != null)
+                BrickConnectionStatusChanged(sender, e);
             // If the socket is not connected anymore, destroy and remove it from the list, so the car can reconnect.
             if (!e.Connected)
             {
