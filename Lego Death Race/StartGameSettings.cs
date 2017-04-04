@@ -23,18 +23,31 @@ namespace Lego_Death_Race
         private void changeDisplay()
         {
             PlayerCount = Convert.ToSByte(nudPlayerCount.Value);
-            if (PlayerCount == 3)
+            if (PlayerCount == 2)
             {
+                tboxPlayerName0.Enabled = true;
+                tboxPlayerName1.Enabled = true;
+                tboxPlayerName2.Enabled = false;
+                tboxPlayerName3.Enabled = false;
+            }
+            else if (PlayerCount == 3)
+            {
+                tboxPlayerName0.Enabled = true;
+                tboxPlayerName1.Enabled = true;
                 tboxPlayerName2.Enabled = true;
                 tboxPlayerName3.Enabled = false;
             }
             else if (PlayerCount == 4)
             {
+                tboxPlayerName0.Enabled = true;
+                tboxPlayerName1.Enabled = true;
                 tboxPlayerName2.Enabled = true;
                 tboxPlayerName3.Enabled = true;
             }
             else
             {
+                tboxPlayerName0.Enabled = true;
+                tboxPlayerName1.Enabled = false;
                 tboxPlayerName2.Enabled = false;
                 tboxPlayerName3.Enabled = false;
             }
