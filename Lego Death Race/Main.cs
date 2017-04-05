@@ -49,16 +49,6 @@ namespace Lego_Death_Race
 
             // Create server socket
             mServerSocket = new ServerSocket(playerCount);
-            mServerSocket.BrickConnectionStatusChanged += MServerSocket_BrickConnectionStatusChanged;
-        }
-
-        private void MServerSocket_BrickConnectionStatusChanged(object sender, ConnectedEventArgs e)
-        {
-            // This works bec
-            int index = GetPlayerListIndexById(((ConnectionToBrick)sender).PlayerIndex);
-            if (index < 0)
-                return;
-            mPlayers[index].SetCarConnected(e.Connected);
         }
 
         private int GetPlayerListIndexById(int id)
@@ -157,28 +147,14 @@ namespace Lego_Death_Race
             while(mGameRunning)
             {
                 // Send controller states to the ev3 bricks
-                for(int i=0;i<mPlayers.Count;i++)
+                foreach(PlayerControl p in mPlayers)
                 {
-                    /*foreach (ConnectionToBrick ctb in mServerSocket.mConnectedBricks)
-                    {
-                        if (ctb.PlayerIndex == mPlayers[i].PlayerId)
-                        {
-                            PckControllerButtonState p = new PckControllerButtonState(mPlayers[i].ControllerState);
-                            ctb.SendData(p);
-                            break;
-                        }
-                    }*/
-                    for(int j=0;j<mServerSocket.mConnectedBricks.Count;j++)
-                    {
-                        if(mServerSocket.mConnectedBricks[j].PlayerIndex == mPlayers[i].PlayerId)
-                        {
-                            PckControllerButtonState p = new PckControllerButtonState(mPlayers[i].ControllerState);
-                            mServerSocket.mConnectedBricks[j].SendData(p);
-                            break;
-                        }
-                    }
+                    if (!p.ControllerConnected)
+                        continue;
+                    PckControllerButtonState pck = new PckControllerButtonState(p.ControllerState);
+                    mServerSocket.SendPacket(p.PlayerId, pck);
                 }
-                Thread.Sleep(10);
+                Thread.Sleep(50);
             }
             Console.WriteLine("Exited main loop");
         }

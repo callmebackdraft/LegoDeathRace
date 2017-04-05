@@ -84,9 +84,9 @@
     <Compile Include="MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Networking\ConnectionToBrick.cs" />
     <Compile Include="Networking\Packet.cs" />
     <Compile Include="Networking\Packets\PckControllerButtonState.cs" />
+    <Compile Include="Networking\RegisteredClient.cs" />
     <Compile Include="Networking\ServerSocket.cs" />
     <Compile Include="PlayerControl.cs">
       <SubType>UserControl</SubType>
