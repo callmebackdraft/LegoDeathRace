@@ -122,11 +122,11 @@ namespace Lego_Death_Race
             CT_SetCountDownLabelText("1");
             sp = new SoundPlayer(Properties.Resources.ONE);
             sp.Play();
-            Thread.Sleep(1000);*/
+            Thread.Sleep(1000);
             CT_SetCountDownLabelText("GO!");
             sp = new SoundPlayer(Properties.Resources.GO);
             sp.Play();
-            Thread.Sleep(1000);
+            Thread.Sleep(1000);*/
             // Remove countdown label and show the gui
             //pnlSeperator.Controls.RemoveAt(0);
             CT_RemoveCountDownLabel();
@@ -144,7 +144,12 @@ namespace Lego_Death_Race
             // Enable quit button
             CT_SetQuitButtonEnabled(true);
 
-            while(mGameRunning)
+            // Add the start time
+            foreach (PlayerControl p in mPlayers)
+                p.AddLapTime(mStartTime);
+
+            // Start 
+            while (mGameRunning)
             {
                 // Send controller states to the ev3 bricks
                 foreach(PlayerControl p in mPlayers)
@@ -154,9 +159,64 @@ namespace Lego_Death_Race
                     PckControllerButtonState pck = new PckControllerButtonState(p.ControllerState);
                     mServerSocket.SendPacket(p.PlayerId, pck);
                 }
+
+                foreach (PlayerControl p in mPlayers)
+                {
+                    // Update car connection status
+                    p.SetCarConnected(mServerSocket.IsPlayerConnected(p.PlayerId));
+                    // Update Laptimes
+                    p.SetCurrentLapTime();
+                }
+
+                // Update ranking
+                UpdatePlayerRanks();
+
+                // Check if someone has won and act on that
+
                 Thread.Sleep(50);
+
+                
             }
             Console.WriteLine("Exited main loop");
+        }
+
+        private void UpdatePlayerRanks()
+        {
+            List<int> ranking = new List<int>();
+            //List<int> excludePlayers = new List<int>();
+            //int[] ranking = new int[mPlayers.Count];
+
+            while (ranking.Count < mPlayers.Count)
+            {
+                int fastest = -1;
+                for (int i = 0; i < mPlayers.Count; i++)
+                {
+                    if (IsIntInList(i, ranking))   // Player is already "ranked"
+                        continue;
+                    if (fastest == -1)
+                    {
+                        fastest = i;
+                    }
+                    else
+                    {
+                        if (mPlayers[fastest].LapCount < mPlayers[i].LapCount)   // More laps equals higher ranking
+                            fastest = i;
+                        else if (mPlayers[fastest].LapCount == mPlayers[i].LapCount && mPlayers[fastest].CurrentLapTime < mPlayers[i].CurrentLapTime)    // If the have the same amount of driven laps, we assume the player with the most time in their current lap is ahead
+                            fastest = i;
+                    }
+                }
+                ranking.Add(fastest);
+            }
+            for (int i = 0; i < ranking.Count; i++)
+                mPlayers[ranking[i]].SetRank(i + 1);
+        }
+
+        private bool IsIntInList(int value, List<int> list)
+        {
+            foreach (int i in list)
+                if (i == value)
+                    return true;
+            return false;
         }
 
         #region Threads

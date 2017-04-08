@@ -36,9 +36,10 @@
             // 
             // btnStartRace
             // 
-            this.btnStartRace.Location = new System.Drawing.Point(12, 12);
+            this.btnStartRace.Location = new System.Drawing.Point(9, 10);
+            this.btnStartRace.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStartRace.Name = "btnStartRace";
-            this.btnStartRace.Size = new System.Drawing.Size(140, 35);
+            this.btnStartRace.Size = new System.Drawing.Size(105, 28);
             this.btnStartRace.TabIndex = 0;
             this.btnStartRace.Text = "Start Race";
             this.btnStartRace.UseVisualStyleBackColor = true;
@@ -47,9 +48,10 @@
             // btnQuitRace
             // 
             this.btnQuitRace.Enabled = false;
-            this.btnQuitRace.Location = new System.Drawing.Point(158, 12);
+            this.btnQuitRace.Location = new System.Drawing.Point(118, 10);
+            this.btnQuitRace.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnQuitRace.Name = "btnQuitRace";
-            this.btnQuitRace.Size = new System.Drawing.Size(140, 35);
+            this.btnQuitRace.Size = new System.Drawing.Size(105, 28);
             this.btnQuitRace.TabIndex = 1;
             this.btnQuitRace.Text = "Quit Race";
             this.btnQuitRace.UseVisualStyleBackColor = true;
@@ -58,37 +60,40 @@
             // pnlSeperator
             // 
             this.pnlSeperator.BackColor = System.Drawing.Color.Black;
-            this.pnlSeperator.Location = new System.Drawing.Point(0, 53);
+            this.pnlSeperator.Location = new System.Drawing.Point(0, 43);
+            this.pnlSeperator.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlSeperator.Name = "pnlSeperator";
-            this.pnlSeperator.Size = new System.Drawing.Size(200, 2);
+            this.pnlSeperator.Size = new System.Drawing.Size(150, 2);
             this.pnlSeperator.TabIndex = 2;
             // 
             // lblTimeElapsed
             // 
             this.lblTimeElapsed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTimeElapsed.Font = new System.Drawing.Font("Courier New", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeElapsed.Location = new System.Drawing.Point(489, 9);
+            this.lblTimeElapsed.Location = new System.Drawing.Point(367, 7);
+            this.lblTimeElapsed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTimeElapsed.Name = "lblTimeElapsed";
-            this.lblTimeElapsed.Size = new System.Drawing.Size(201, 35);
+            this.lblTimeElapsed.Size = new System.Drawing.Size(151, 28);
             this.lblTimeElapsed.TabIndex = 3;
             this.lblTimeElapsed.Text = "00:00:00";
             this.lblTimeElapsed.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(702, 331);
+            this.ClientSize = new System.Drawing.Size(526, 269);
             this.Controls.Add(this.lblTimeElapsed);
             this.Controls.Add(this.pnlSeperator);
             this.Controls.Add(this.btnQuitRace);
             this.Controls.Add(this.btnStartRace);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Main";
-            this.Text = "Lego Death Race";
+            this.Text = "Ultimate Death Race";
             this.ResumeLayout(false);
 
         }

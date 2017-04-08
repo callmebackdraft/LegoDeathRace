@@ -9,11 +9,13 @@ namespace Lego_Death_Race.Networking.Packets
 {
     public class PckControllerButtonState : Packet
     {
-        public PckControllerButtonState(State controllerState) : base(HEADERLENGTH + 6, PT_CONTROLLER_BUTTON_STATE)
+        public PckControllerButtonState(State controllerState) : base(HEADERLENGTH + 10, PT_CONTROLLER_BUTTON_STATE)
         {
             WriteUInt32((UInt32)controllerState.Gamepad.Buttons, HEADERLENGTH);
             Data[HEADERLENGTH + 4] = controllerState.Gamepad.LeftTrigger;
             Data[HEADERLENGTH + 5] = controllerState.Gamepad.RightTrigger;
+            WriteShort(controllerState.Gamepad.LeftThumbX, HEADERLENGTH + 6);
+            WriteShort(controllerState.Gamepad.LeftThumbY, HEADERLENGTH + 7);
         }
     }
 }

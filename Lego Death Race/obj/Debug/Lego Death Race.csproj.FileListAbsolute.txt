@@ -96,7 +96,6 @@ C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\SharpDX.x
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\SharpDX.XInput.xml
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego Death Race.csprojResolveAssemblyReference.cache
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.AboutBox.resources
-C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.Form1.resources
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.Main.resources
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.MainMenu.resources
 C:\Users\Dirk-Jan\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.PlayerControl.resources

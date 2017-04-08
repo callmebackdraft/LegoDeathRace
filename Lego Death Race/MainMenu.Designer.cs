@@ -36,10 +36,9 @@
             // 
             // btnStartGame
             // 
-            this.btnStartGame.Location = new System.Drawing.Point(63, 122);
-            this.btnStartGame.Margin = new System.Windows.Forms.Padding(4);
+            this.btnStartGame.Location = new System.Drawing.Point(47, 99);
             this.btnStartGame.Name = "btnStartGame";
-            this.btnStartGame.Size = new System.Drawing.Size(100, 28);
+            this.btnStartGame.Size = new System.Drawing.Size(75, 23);
             this.btnStartGame.TabIndex = 1;
             this.btnStartGame.Text = "Start Game";
             this.btnStartGame.UseVisualStyleBackColor = true;
@@ -47,10 +46,9 @@
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(63, 158);
-            this.btnAbout.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAbout.Location = new System.Drawing.Point(47, 128);
             this.btnAbout.Name = "btnAbout";
-            this.btnAbout.Size = new System.Drawing.Size(100, 28);
+            this.btnAbout.Size = new System.Drawing.Size(75, 23);
             this.btnAbout.TabIndex = 2;
             this.btnAbout.Text = "About";
             this.btnAbout.UseVisualStyleBackColor = true;
@@ -59,26 +57,24 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Lego_Death_Race.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(-3, -2);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(-2, -2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(781, 446);
+            this.pictureBox1.Size = new System.Drawing.Size(586, 362);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // MainMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(772, 438);
+            this.ClientSize = new System.Drawing.Size(579, 356);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnStartGame);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainMenu";
-            this.Text = "Lego Death Race";
+            this.Text = "Ultimate Death Race";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

@@ -36,6 +36,8 @@ namespace Lego_Death_Race.Networking
                 {
                     case "118":
                         return 0;
+                    case "121":
+                        return 1;
                     default:
                         return -1;
                 }

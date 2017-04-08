@@ -14,7 +14,7 @@ namespace Lego_Death_Race
 {
     public partial class PlayerControl : UserControl
     {
-        private List<int> mLapTimes = new List<int>();
+        private List<DateTime> mLapTimes = new List<DateTime>();
         private List<int> mPowerUpCount = new List<int>();
         public bool mGameRunning = true;      // This is set to false when this control is destroyed or by the parent. This is the condition in the read out controller thread.
         //private int mPlayerId;
@@ -22,6 +22,9 @@ namespace Lego_Death_Race
         private Controller mController;
         public bool ControllerConnected { get { return mController.IsConnected; } }
         public State ControllerState { get { return mController.GetState(); } }
+        public int LapCount { get { return mLapTimes.Count - 1; } } // We do minus one because the first added DateTime is the start time.
+        public TimeSpan CurrentLapTime { get { return mLapTimes.Count > 0 ? DateTime.Now.Subtract(mLapTimes[mLapTimes.Count - 1]) : new TimeSpan(); } }
+        private float mTopSpeed = 0;
 
         // Constructor
         public PlayerControl()
@@ -47,6 +50,8 @@ namespace Lego_Death_Race
             // Init the controller
             InitController();
         }
+
+        
 
         #region Controller
         private void InitController()
@@ -80,39 +85,123 @@ namespace Lego_Death_Race
             }
         }
         #endregion
-        #region GUI related stuff       - Will clean this up later
-        public void AddLapTime(int time)
+        #region GUI related stuff
+        #region Lap Times and lapnumber
+        public void AddLapTime(DateTime dt)
         {
             if (lboxLapTimes.InvokeRequired)
             {
                 lboxLapTimes.Invoke((MethodInvoker)delegate
                 {
-                    AddLapTime(time);
+                    AddLapTime(dt);
                 });
             }
             else
             {
-                mLapTimes.Add(time);
-                lboxLapTimes.Items.Add("Lap " + mLapTimes.Count + ": " + time);
-            }
-        }
-
-        public void SetRank(int rank)
-        {
-            if(lblRank.InvokeRequired)
-            {
-                lblRank.Invoke((MethodInvoker)delegate
+                mLapTimes.Add(dt);
+                if (mLapTimes.Count > 1)
                 {
-                    SetRank(rank);
+                    lboxLapTimes.Items.Add("Lap " + (mLapTimes.Count - 1) + ": " + mLapTimes[mLapTimes.Count - 1].Subtract(mLapTimes[mLapTimes.Count - 2]).ToString(@"mm\:ss\.ff"));
+                    SetFastestLapTime(GetFastestLapTime());
+                    SetCurrentLapNumber(LapCount + 1);  // Here we do plus one because otherwise we would be showing the lapnumber of the last lap and not the current one.
+                }
+            }
+        }
+
+        public void SetCurrentLapTime()
+        {
+            if (lblCurrentLapTime.InvokeRequired)
+            {
+                lblCurrentLapTime.Invoke((MethodInvoker)delegate
+                {
+                    SetCurrentLapTime();
                 });
             }
             else
-                lblRank.Text = rank.ToString();
+            {
+                lblCurrentLapTime.Text = CurrentLapTime.ToString(@"mm\:ss\.ff");
+                if (mLapTimes.Count < 2) // First lap, wwe want the fastest laptime to be the same as to current laptime
+                    SetFastestLapTime(CurrentLapTime);
+            }
         }
 
+        private TimeSpan GetFastestLapTime()    // This method may only be called when there are at least two items in the mLapTimes List
+        {
+            TimeSpan fastestTime = new TimeSpan(), temp;
+            for (int i = 1; i < mLapTimes.Count; i++)
+            {
+                if (i == 1)
+                    fastestTime = mLapTimes[i].Subtract(mLapTimes[i - 1]);
+                else
+                {
+                    temp = mLapTimes[i].Subtract(mLapTimes[i - 1]);
+                    if (fastestTime > temp)
+                        fastestTime = temp;
+                }
+            }
+            return fastestTime;
+        }
+
+        private void SetFastestLapTime(TimeSpan ts)
+        {
+            if (lblFastestLapTime.InvokeRequired)
+            {
+                lblFastestLapTime.Invoke((MethodInvoker)delegate
+                {
+                    SetFastestLapTime(ts);
+                });
+            }
+            else
+                lblFastestLapTime.Text = ts.ToString(@"mm\:ss\.ff");
+        }
+
+        private void SetCurrentLapNumber(int lapNumber)
+        {
+            if (lblCurrentLap.InvokeRequired)
+            {
+                lblCurrentLap.Invoke((MethodInvoker)delegate
+                {
+                    SetCurrentLapNumber(lapNumber);
+                });
+            }
+            else
+                lblCurrentLap.Text = lapNumber.ToString();
+        }
+        #endregion
+        #region Max and current speed
+        public void SetCurrentSpeed(float speed)
+        {
+            if (lblCurrentSpeed.InvokeRequired)
+            {
+                lblCurrentSpeed.Invoke((MethodInvoker)delegate
+                {
+                    SetCurrentSpeed(speed);
+                });
+            }
+            else
+            {
+                lblCurrentSpeed.Text = speed.ToString("n2") + " Km/U";
+                if (speed > mTopSpeed)
+                    SetFastestSpeed(speed);
+            }
+        }
+        private void SetFastestSpeed(float speed)
+        {
+            if (lblFastestSpeed.InvokeRequired)
+            {
+                lblFastestSpeed.Invoke((MethodInvoker)delegate
+                {
+                    SetFastestSpeed(speed);
+                });
+            }
+            else
+                lblFastestSpeed.Text = speed.ToString("n2") + " Km/U";
+        }
+        #endregion
+        #region Power ups
         public void SetPowerUp(int powerUp)
         {
-            if(pboxPowerup.InvokeRequired)
+            if (pboxPowerup.InvokeRequired)
             {
                 pboxPowerup.Invoke((MethodInvoker)delegate
                 {
@@ -122,7 +211,7 @@ namespace Lego_Death_Race
             else
             {
                 Image img = null;
-                switch(powerUp)
+                switch (powerUp)
                 {
                     case 0:
                         img = Properties.Resources.icon_powerup_minigun;
@@ -138,75 +227,10 @@ namespace Lego_Death_Race
             }
         }
 
-        public void SetCurrentLapNumber(int lapNumber)
-        {
-            if (lblCurrentLap.InvokeRequired)
-            {
-                lblCurrentLap.Invoke((MethodInvoker)delegate
-                {
-                    SetCurrentLapNumber(lapNumber);
-                });
-            }
-            else
-                lblCurrentLap.Text = lapNumber.ToString();
-        }
-
-        public void SetFastestSpeed(int speed)
-        {
-            if (lblFastestSpeed.InvokeRequired)
-            {
-                lblFastestSpeed.Invoke((MethodInvoker)delegate
-                {
-                    SetFastestSpeed(speed);
-                });
-            }
-            else
-                lblFastestSpeed.Text = speed.ToString();
-        }
-
-        public void SetCurrentSpeed(int speed)
-        {
-            if (lblCurrentSpeed.InvokeRequired)
-            {
-                lblCurrentSpeed.Invoke((MethodInvoker)delegate
-                {
-                    SetCurrentSpeed(speed);
-                });
-            }
-            else
-                lblCurrentSpeed.Text = speed.ToString();
-        }
-
-        public void SetCurrentLapTime(int time)
-        {
-            if (lblCurrentLapTime.InvokeRequired)
-            {
-                lblCurrentLapTime.Invoke((MethodInvoker)delegate
-                {
-                    SetCurrentLapTime(time);
-                });
-            }
-            else
-                lblCurrentLapTime.Text = time.ToString();
-        }
-
-        public void SetFastestLapTime(int time)
-        {
-            if (lblFastestLapTime.InvokeRequired)
-            {
-                lblFastestLapTime.Invoke((MethodInvoker)delegate
-                {
-                    SetFastestLapTime(time);
-                });
-            }
-            else
-                lblFastestLapTime.Text = time.ToString();
-        }
-
         public void IncrementPowerUpCount(int powerUp)
         {
             Label l = GetLabelByName("lblPowerUpCount" + powerUp);
-            if(l.InvokeRequired)
+            if (l.InvokeRequired)
             {
                 l.Invoke((MethodInvoker)delegate
                 {
@@ -220,18 +244,42 @@ namespace Lego_Death_Race
             }
         }
 
-        /*private void CT_SetLabel(Label l, string text)
+        public void SetPowerUpAmmo(int value)
         {
-            if (l.InvokeRequired)
+            if(pbarPowerUpAmmo.InvokeRequired)
             {
-                l.Invoke((MethodInvoker)delegate
+                pbarPowerUpAmmo.Invoke((MethodInvoker)delegate
                 {
-                    CT_SetLabel(l, text);
+                    SetPowerUpAmmo(value);
                 });
             }
             else
-                l.Text = text;
-        }*/
+            {
+                if(value < 1)
+                {
+                    pbarPowerUpAmmo.Visible = false;
+                }
+                else
+                {
+                    pbarPowerUpAmmo.Visible = true;
+                    pbarPowerUpAmmo.Value = value;
+                }
+            }
+        }
+        #endregion
+        #region REST
+        public void SetRank(int rank)
+        {
+            if(lblRank.InvokeRequired)
+            {
+                lblRank.Invoke((MethodInvoker)delegate
+                {
+                    SetRank(rank);
+                });
+            }
+            else
+                lblRank.Text = rank.ToString();
+        }
 
         private Label GetLabelByName(string name)
         {
@@ -247,8 +295,8 @@ namespace Lego_Death_Race
             SetRank(0);
             // Reset current lap and current and fastest lap time
             SetCurrentLapNumber(1);
-            SetCurrentLapTime(0);
-            SetFastestLapTime(0);
+            //SetCurrentLapTime(0);
+            //SetFastestLapTime(0);
             // Reset current and fastest speed
             SetFastestSpeed(0);
             SetCurrentSpeed(0);
@@ -298,5 +346,11 @@ namespace Lego_Death_Race
             }
         }
         #endregion
+        #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddLapTime(DateTime.Now);
+        }
     }
 }

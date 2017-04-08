@@ -63,6 +63,13 @@ namespace Lego_Death_Race.Networking
             Buffer.BlockCopy(tempBuf, 0, _buffer, offset, 4);
         }
 
+        protected void WriteShort(short value, int offset)
+        {
+            byte[] tempBuf = new byte[2];//ushort is 2 bytes long
+            tempBuf = BitConverter.GetBytes(value);
+            Buffer.BlockCopy(tempBuf, 0, _buffer, offset, 2);
+        }
+
         protected float ReadFloat(int offset)
         {
             byte[] arr = new byte[4];

@@ -52,6 +52,11 @@ namespace Lego_Death_Race.Networking
             new Thread(ReceivePackets).Start();
         }
 
+        ~ServerSocket()
+        {
+            mServerSocket.Close();
+        }
+
         private void ReceivePackets()
         {
             IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
@@ -76,6 +81,14 @@ namespace Lego_Death_Race.Networking
             RegisteredClient c = GetRegisteredClientByPlayerId(playerId);
             if (c != null)
                 mServerSocket.SendTo(p.Data, c.EndPoint);
+        }
+
+        public bool IsPlayerConnected(int playerId)
+        {
+            RegisteredClient c = GetRegisteredClientByPlayerId(playerId);
+            if (c == null)
+                return false;
+            return c.Connected;
         }
 
         private RegisteredClient GetRegisteredClientByPlayerId(int playerId)
