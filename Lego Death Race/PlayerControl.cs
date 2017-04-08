@@ -15,7 +15,7 @@ namespace Lego_Death_Race
     public partial class PlayerControl : UserControl
     {
         private List<DateTime> mLapTimes = new List<DateTime>();
-        private List<int> mPowerUpCount = new List<int>();
+        //private List<int> mPowerUpCount = new List<int>();
         public bool mGameRunning = true;      // This is set to false when this control is destroyed or by the parent. This is the condition in the read out controller thread.
         //private int mPlayerId;
         public int PlayerId { get; set; }
@@ -25,6 +25,7 @@ namespace Lego_Death_Race
         public int LapCount { get { return mLapTimes.Count - 1; } } // We do minus one because the first added DateTime is the start time.
         public TimeSpan CurrentLapTime { get { return mLapTimes.Count > 0 ? DateTime.Now.Subtract(mLapTimes[mLapTimes.Count - 1]) : new TimeSpan(); } }
         private float mTopSpeed = 0;
+        public bool mFinishLineVarOnCar = false;
 
         // Constructor
         public PlayerControl()
@@ -214,12 +215,15 @@ namespace Lego_Death_Race
                 switch (powerUp)
                 {
                     case 0:
-                        img = Properties.Resources.icon_powerup_minigun;
+                        img = null;
                         break;
                     case 1:
-                        img = Properties.Resources.icon_powerup_speedup;
+                        img = Properties.Resources.icon_powerup_minigun;
                         break;
                     case 2:
+                        img = Properties.Resources.icon_powerup_speedup;
+                        break;
+                    case 3:
                         img = Properties.Resources.icon_slowdown;
                         break;
                 }
@@ -227,20 +231,19 @@ namespace Lego_Death_Race
             }
         }
 
-        public void IncrementPowerUpCount(int powerUp)
+        public void SetPowerUpCount(int powerUp, int count)
         {
             Label l = GetLabelByName("lblPowerUpCount" + powerUp);
             if (l.InvokeRequired)
             {
                 l.Invoke((MethodInvoker)delegate
                 {
-                    IncrementPowerUpCount(powerUp);
+                    SetPowerUpCount(powerUp, count);
                 });
             }
             else
             {
-                mPowerUpCount[powerUp]++;
-                l.Text = mPowerUpCount[powerUp].ToString();
+                l.Text = count.ToString();
             }
         }
 
@@ -303,8 +306,7 @@ namespace Lego_Death_Race
             // Reset powerups
             for (int i = 0; i < 3; i++)
             {
-                mPowerUpCount.Add(-1);
-                IncrementPowerUpCount(i);
+                SetPowerUpCount(i, 0);
             }
             // Reset connection statusses
             SetCarConnected(false);

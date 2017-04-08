@@ -23,7 +23,7 @@ namespace Lego_Death_Race.Networking
         {
             get
             {
-                return DateTime.Now.Subtract(mLastAccessed).Seconds >= 5 ? true : false;
+                return DateTime.Now.Subtract(mLastAccessed).Seconds >= 1 ? false : true;
             }
         }
 

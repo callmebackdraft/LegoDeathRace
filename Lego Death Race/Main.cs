@@ -49,6 +49,41 @@ namespace Lego_Death_Race
 
             // Create server socket
             mServerSocket = new ServerSocket(playerCount);
+            mServerSocket.PacketRecieved += MServerSocket_PacketRecieved;
+        }
+
+        private void MServerSocket_PacketRecieved(object sender, PacketEventArgs e)
+        {
+            if(e.Packet.Type == Packet.PT_CAR_DATA)
+            {
+                PckCarData pcd = new PckCarData(e.Packet.Data);
+                int index = GetPlayerListIndexById(e.PlayerId);
+                // Deal with finishline
+                if (pcd.PassedFinishLine && !mPlayers[index].mFinishLineVarOnCar)
+                {
+                    mPlayers[index].AddLapTime(DateTime.Now);
+                    mPlayers[index].mFinishLineVarOnCar = true;
+                    new Thread(() =>
+                    {
+                        while (mGameRunning && mPlayers[index].mFinishLineVarOnCar)
+                        {
+                            // Send packet to tell car to reset the var because we've read it. AFAIK now UDP packets do not always arrive, so that's why I want the server to confirm that it knows the player has passed the finishline. Until it does, the car keeps the finishline passed var set to true.
+                            mServerSocket.SendPacket(mPlayers[index].PlayerId, new Packet(Packet.HEADERLENGTH, Packet.PT_RESET_FINISHLINE_VAR));
+                            Thread.Sleep(50);
+                        }
+                        Console.WriteLine("Finish line var on car has been reset");
+                    }).Start();
+                }
+                else
+                    mPlayers[index].mFinishLineVarOnCar = false;
+
+                mPlayers[index].SetCurrentSpeed(pcd.CurrentSpeed);
+                mPlayers[index].SetPowerUp(pcd.CurrentPowerUp);
+                mPlayers[index].SetPowerUpAmmo(pcd.PowerUpAmmo);
+                mPlayers[index].SetPowerUpCount(0, pcd.CollectedPowerUps_Minigun);
+                mPlayers[index].SetPowerUpCount(1, pcd.CollectedPowerUps_SpeedUp);
+                mPlayers[index].SetPowerUpCount(2, pcd.CollectedPowerUps_SlowDown);
+            }
         }
 
         private int GetPlayerListIndexById(int id)

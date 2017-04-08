@@ -15,7 +15,7 @@ namespace Lego_Death_Race.Networking
     }
     public class PacketEventArgs : EventArgs
     {
-        public int PlayerIndex { get; set; }
+        public int PlayerId { get; set; }
         public Packet Packet { get; set; }
     }
 
@@ -72,7 +72,8 @@ namespace Lego_Death_Race.Networking
                     c = new RegisteredClient(remote);
                     mRegisteredClients.Add(c);
                 }
-                OnPacketRecieved(new PacketEventArgs() { PlayerIndex = c.PlayerId, Packet = new Packet(buffer) });
+                c.ResetLastTimeAccessed();
+                OnPacketRecieved(new PacketEventArgs() { PlayerId = c.PlayerId, Packet = new Packet(buffer) });
             }
         }
 

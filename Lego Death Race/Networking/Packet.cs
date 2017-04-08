@@ -10,6 +10,8 @@ namespace Lego_Death_Race.Networking
     {
         #region PacketTypes
         public const ushort PT_CONTROLLER_BUTTON_STATE = 0;
+        public const ushort PT_CAR_DATA = 1;
+        public const ushort PT_RESET_FINISHLINE_VAR = 2;
         #endregion
 
         public const ushort HEADERLENGTH = 6;
