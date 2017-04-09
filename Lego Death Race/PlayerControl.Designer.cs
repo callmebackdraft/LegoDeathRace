@@ -70,7 +70,7 @@
             this.tboxName.BackColor = System.Drawing.SystemColors.Window;
             this.tboxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxName.Location = new System.Drawing.Point(79, 20);
-            this.tboxName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tboxName.Margin = new System.Windows.Forms.Padding(2);
             this.tboxName.Name = "tboxName";
             this.tboxName.ReadOnly = true;
             this.tboxName.Size = new System.Drawing.Size(236, 44);
@@ -99,7 +99,7 @@
             this.groupBox1.Location = new System.Drawing.Point(2, 96);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 13, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(388, 340);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
@@ -108,7 +108,7 @@
             // 
             this.lboxLapTimes.FormattingEnabled = true;
             this.lboxLapTimes.Location = new System.Drawing.Point(4, 153);
-            this.lboxLapTimes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lboxLapTimes.Margin = new System.Windows.Forms.Padding(2);
             this.lboxLapTimes.Name = "lboxLapTimes";
             this.lboxLapTimes.Size = new System.Drawing.Size(102, 173);
             this.lboxLapTimes.TabIndex = 20;
@@ -171,10 +171,10 @@
             // lblFastestSpeed
             // 
             this.lblFastestSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFastestSpeed.Location = new System.Drawing.Point(202, 108);
+            this.lblFastestSpeed.Location = new System.Drawing.Point(197, 108);
             this.lblFastestSpeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 13);
             this.lblFastestSpeed.Name = "lblFastestSpeed";
-            this.lblFastestSpeed.Size = new System.Drawing.Size(80, 19);
+            this.lblFastestSpeed.Size = new System.Drawing.Size(90, 19);
             this.lblFastestSpeed.TabIndex = 13;
             this.lblFastestSpeed.Text = "label2";
             this.lblFastestSpeed.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -182,10 +182,10 @@
             // lblCurrentSpeed
             // 
             this.lblCurrentSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentSpeed.Location = new System.Drawing.Point(298, 108);
+            this.lblCurrentSpeed.Location = new System.Drawing.Point(293, 108);
             this.lblCurrentSpeed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 13);
             this.lblCurrentSpeed.Name = "lblCurrentSpeed";
-            this.lblCurrentSpeed.Size = new System.Drawing.Size(80, 19);
+            this.lblCurrentSpeed.Size = new System.Drawing.Size(90, 19);
             this.lblCurrentSpeed.TabIndex = 12;
             this.lblCurrentSpeed.Text = "-0,00 Km/U";
             this.lblCurrentSpeed.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -294,7 +294,7 @@
             // 
             this.pboxCarConnected.Image = global::Lego_Death_Race.Properties.Resources.icon_car_connected;
             this.pboxCarConnected.Location = new System.Drawing.Point(122, 440);
-            this.pboxCarConnected.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pboxCarConnected.Margin = new System.Windows.Forms.Padding(2);
             this.pboxCarConnected.Name = "pboxCarConnected";
             this.pboxCarConnected.Size = new System.Drawing.Size(72, 78);
             this.pboxCarConnected.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -305,7 +305,7 @@
             // 
             this.pboxControllerConnected.Image = global::Lego_Death_Race.Properties.Resources.icon_controller_connected;
             this.pboxControllerConnected.Location = new System.Drawing.Point(199, 440);
-            this.pboxControllerConnected.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pboxControllerConnected.Margin = new System.Windows.Forms.Padding(2);
             this.pboxControllerConnected.Name = "pboxControllerConnected";
             this.pboxControllerConnected.Size = new System.Drawing.Size(72, 78);
             this.pboxControllerConnected.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -316,9 +316,10 @@
             // 
             this.pboxPowerup.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pboxPowerup.Location = new System.Drawing.Point(319, 2);
-            this.pboxPowerup.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pboxPowerup.Margin = new System.Windows.Forms.Padding(2);
             this.pboxPowerup.Name = "pboxPowerup";
             this.pboxPowerup.Size = new System.Drawing.Size(72, 78);
+            this.pboxPowerup.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pboxPowerup.TabIndex = 3;
             this.pboxPowerup.TabStop = false;
             // 
@@ -355,7 +356,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pboxPowerup);
             this.Controls.Add(this.tboxName);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PlayerControl";
             this.Size = new System.Drawing.Size(393, 528);
             this.groupBox1.ResumeLayout(false);

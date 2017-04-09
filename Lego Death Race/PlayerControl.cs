@@ -183,7 +183,10 @@ namespace Lego_Death_Race
             {
                 lblCurrentSpeed.Text = speed.ToString("n2") + " Km/U";
                 if (speed > mTopSpeed)
+                {
+                    mTopSpeed = speed;
                     SetFastestSpeed(speed);
+                }
             }
         }
         private void SetFastestSpeed(float speed)
