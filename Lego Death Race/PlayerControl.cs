@@ -18,6 +18,7 @@ namespace Lego_Death_Race
         //private List<int> mPowerUpCount = new List<int>();
         public bool mGameRunning = true;      // This is set to false when this control is destroyed or by the parent. This is the condition in the read out controller thread.
         //private int mPlayerId;
+        private Thread mControllerConnectionStatusUpdater = null;
         public int PlayerId { get; set; }
         private Controller mController;
         public bool ControllerConnected { get { return mController.IsConnected; } }
@@ -25,7 +26,7 @@ namespace Lego_Death_Race
         public int LapCount { get { return mLapTimes.Count - 1; } } // We do minus one because the first added DateTime is the start time.
         public TimeSpan CurrentLapTime { get { return mLapTimes.Count > 0 ? DateTime.Now.Subtract(mLapTimes[mLapTimes.Count - 1]) : new TimeSpan(); } }
         private float mTopSpeed = 0;
-        public bool mFinishLineVarOnCar = false;
+        public bool mFinishLineVarOnCar = false, mGameStartedVarOnCar = false;
 
         // Constructor
         public PlayerControl()
@@ -33,11 +34,17 @@ namespace Lego_Death_Race
             InitializeComponent();
         }
 
-        // Destructor
+        /*// Destructor
         ~PlayerControl()
         {
             // Set mControlAlive to false, so running threads get destroyed
             mGameRunning = false;
+        }*/
+
+        public void DinamiteThreads()
+        {
+            if (mControllerConnectionStatusUpdater != null)
+                mControllerConnectionStatusUpdater.Abort();
         }
 
         public void InitPlayer(int playerId, string playerName)
@@ -74,7 +81,8 @@ namespace Lego_Death_Race
                     break;
             }
             // Start the controller handler thread
-            new Thread(new ThreadStart(Xbox360ControllerThread)).Start();
+            mControllerConnectionStatusUpdater = new Thread(new ThreadStart(Xbox360ControllerThread));
+            mControllerConnectionStatusUpdater.Start();
         }
 
         private void Xbox360ControllerThread()
@@ -84,6 +92,7 @@ namespace Lego_Death_Race
                 SetControllerConnected(mController.IsConnected);
                 Thread.Sleep(10);
             }
+            Console.WriteLine("Stopped updating controller connected for player with id: " + PlayerId);
         }
         #endregion
         #region GUI related stuff
@@ -352,10 +361,5 @@ namespace Lego_Death_Race
         }
         #endregion
         #endregion
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AddLapTime(DateTime.Now);
-        }
     }
 }

@@ -12,6 +12,7 @@ namespace Lego_Death_Race.Networking
         public const ushort PT_CONTROLLER_BUTTON_STATE = 0;
         public const ushort PT_CAR_DATA = 1;
         public const ushort PT_RESET_FINISHLINE_VAR = 2;
+        public const ushort PT_RESET_GAME_LOGIC = 3;
         #endregion
 
         public const ushort HEADERLENGTH = 6;

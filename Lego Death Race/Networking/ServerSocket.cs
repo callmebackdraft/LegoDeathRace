@@ -30,13 +30,14 @@ namespace Lego_Death_Race.Networking
         private const int mPort = 45621;
         // Server socket
         private Socket mServerSocket = null;
+        private Thread mReceiver = null;
 
         //public List<ConnectionToBrick> mConnectedBricks = new List<ConnectionToBrick>();
         private int mPlayerCount;
 
         private List<RegisteredClient> mRegisteredClients = new List<RegisteredClient>();
 
-        //public List<ConnectionToBrick> ConnectedBricks { get { return mConnectedBricks; } }
+        public List<RegisteredClient> RegisteredClients { get { return mRegisteredClients; } }
 
         public ServerSocket(int playerCount)
         {
@@ -49,12 +50,18 @@ namespace Lego_Death_Race.Networking
             mServerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             mServerSocket.Bind(localEndPoint);
 
-            new Thread(ReceivePackets).Start();
+            mReceiver = new Thread(new ThreadStart(ReceivePackets));
+            mReceiver.Start();
         }
 
-        ~ServerSocket()
+        public void Close()
         {
-            mServerSocket.Close();
+            if(mServerSocket != null)
+                mServerSocket.Close();
+            mServerSocket = null;
+            // Strap dinamite to the thread, might be blocked because 'mServerSocket.ReceiveFrom(buffer, ref remote);'
+            if (mReceiver != null)
+                mReceiver.Abort();
         }
 
         private void ReceivePackets()
@@ -62,7 +69,7 @@ namespace Lego_Death_Race.Networking
             IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
             EndPoint remote = (EndPoint)(sender);
             byte[] buffer = new byte[256];
-            while (true)
+            while (mServerSocket != null)
             {
                 int recv = mServerSocket.ReceiveFrom(buffer, ref remote);
                 RegisteredClient c = GetRegisteredClientByEndPoint(remote);
@@ -75,12 +82,13 @@ namespace Lego_Death_Race.Networking
                 c.ResetLastTimeAccessed();
                 OnPacketRecieved(new PacketEventArgs() { PlayerId = c.PlayerId, Packet = new Packet(buffer) });
             }
+            Console.Write("Stopped receiving packets");
         }
 
         public void SendPacket(int playerId, Packet p)
         {
             RegisteredClient c = GetRegisteredClientByPlayerId(playerId);
-            if (c != null)
+            if (c != null && mServerSocket != null)
                 mServerSocket.SendTo(p.Data, c.EndPoint);
         }
 
@@ -89,6 +97,12 @@ namespace Lego_Death_Race.Networking
             RegisteredClient c = GetRegisteredClientByPlayerId(playerId);
             if (c == null)
                 return false;
+            if(!c.Connected)    // If car ain't connected anymore, remove it from the list
+            {
+                int index = GetRegisteredClientIndexByPlayerId(c.PlayerId);
+                if (index >= 0)
+                    mRegisteredClients.RemoveAt(index);
+            }
             return c.Connected;
         }
 
@@ -106,6 +120,14 @@ namespace Lego_Death_Race.Networking
                 if (c.EndPoint == endPoint)
                     return c;
             return null;
+        }
+
+        private int GetRegisteredClientIndexByPlayerId(int playerId)
+        {
+            for (int i = 0; i < mRegisteredClients.Count; i++)
+                if (mRegisteredClients[i].PlayerId == playerId)
+                    return i;
+            return -1;
         }
 
         protected virtual void OnPacketRecieved(PacketEventArgs e)

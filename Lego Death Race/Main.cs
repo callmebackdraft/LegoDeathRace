@@ -58,12 +58,14 @@ namespace Lego_Death_Race
             {
                 PckCarData pcd = new PckCarData(e.Packet.Data);
                 int index = GetPlayerListIndexById(e.PlayerId);
+                if (index < 0)
+                    return;
                 // Deal with finishline
                 if (pcd.PassedFinishLine && !mPlayers[index].mFinishLineVarOnCar)
                 {
                     mPlayers[index].AddLapTime(DateTime.Now);
                     mPlayers[index].mFinishLineVarOnCar = true;
-                    new Thread(() =>
+                    new Thread(new ThreadStart(() =>
                     {
                         while (mGameRunning && mPlayers[index].mFinishLineVarOnCar)
                         {
@@ -72,10 +74,12 @@ namespace Lego_Death_Race
                             Thread.Sleep(50);
                         }
                         Console.WriteLine("Finish line var on car has been reset");
-                    }).Start();
+                    })).Start();
                 }
                 else
                     mPlayers[index].mFinishLineVarOnCar = false;
+
+                mPlayers[index].mGameStartedVarOnCar = pcd.GameStarted;
 
                 mPlayers[index].SetCurrentSpeed(pcd.CurrentSpeed);
                 mPlayers[index].SetPowerUp(pcd.CurrentPowerUp);
@@ -126,6 +130,20 @@ namespace Lego_Death_Race
         {
             // Disable the start button
             CT_SetStartButtonEnabled(false);
+            // Reset all gamelogic vars on the cars
+            bool allCarsReset = false;
+            while(!allCarsReset)
+            {
+                allCarsReset = true;
+                foreach(PlayerControl p in mPlayers)
+                {
+                    if(p.mGameStartedVarOnCar)  // Game logic not reset on car
+                    {
+                        mServerSocket.SendPacket(p.PlayerId, new Packet(Packet.HEADERLENGTH, Packet.PT_RESET_GAME_LOGIC));
+                        allCarsReset = false;
+                    }
+                }
+            }
             // Black out the GUI
             CT_BlackOutGui(true);
             // Create countdown label
@@ -263,6 +281,7 @@ namespace Lego_Death_Race
                 CT_UpdateTimeElapsedLabel(ts.ToString(@"mm\:ss\:ff"));
                 Thread.Sleep(10);
             }
+            Console.WriteLine("Stopped updating elapsed time");
         }
         #endregion
         #region Crossthread functions
@@ -340,6 +359,7 @@ namespace Lego_Death_Race
             else
                 lblTimeElapsed.Text = text;
         }
+
         private void CT_SetQuitButtonEnabled(bool enabled)
         {
             if (btnQuitRace.InvokeRequired)
@@ -353,5 +373,20 @@ namespace Lego_Death_Race
                 btnQuitRace.Enabled = enabled;
         }
         #endregion
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            foreach (PlayerControl p in mPlayers)
+            {
+                p.mGameRunning = false;
+                p.DinamiteThreads();
+            }
+            mGameRunning = false;
+
+            mServerSocket.Close();
+            if (mElapsedTimeUpdater != null)
+                mElapsedTimeUpdater.Abort();
+            if (mMainThread != null)
+                mMainThread.Abort();
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace Lego_Death_Race.Networking.Packets
         public byte CollectedPowerUps_Minigun { get { return Data[HEADERLENGTH + 7]; } }
         public byte CollectedPowerUps_SpeedUp { get { return Data[HEADERLENGTH + 8]; } }
         public byte CollectedPowerUps_SlowDown { get { return Data[HEADERLENGTH + 9]; } }
+        public bool GameStarted { get { return Convert.ToBoolean(Data[HEADERLENGTH + 10]); } }
 
         public PckCarData(byte[] data) : base(data) { }
     }

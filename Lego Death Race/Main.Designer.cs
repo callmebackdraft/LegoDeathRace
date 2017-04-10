@@ -37,7 +37,7 @@
             // btnStartRace
             // 
             this.btnStartRace.Location = new System.Drawing.Point(9, 10);
-            this.btnStartRace.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStartRace.Margin = new System.Windows.Forms.Padding(2);
             this.btnStartRace.Name = "btnStartRace";
             this.btnStartRace.Size = new System.Drawing.Size(105, 28);
             this.btnStartRace.TabIndex = 0;
@@ -49,7 +49,7 @@
             // 
             this.btnQuitRace.Enabled = false;
             this.btnQuitRace.Location = new System.Drawing.Point(118, 10);
-            this.btnQuitRace.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnQuitRace.Margin = new System.Windows.Forms.Padding(2);
             this.btnQuitRace.Name = "btnQuitRace";
             this.btnQuitRace.Size = new System.Drawing.Size(105, 28);
             this.btnQuitRace.TabIndex = 1;
@@ -61,7 +61,7 @@
             // 
             this.pnlSeperator.BackColor = System.Drawing.Color.Black;
             this.pnlSeperator.Location = new System.Drawing.Point(0, 43);
-            this.pnlSeperator.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlSeperator.Margin = new System.Windows.Forms.Padding(2);
             this.pnlSeperator.Name = "pnlSeperator";
             this.pnlSeperator.Size = new System.Drawing.Size(150, 2);
             this.pnlSeperator.TabIndex = 2;
@@ -89,11 +89,12 @@
             this.Controls.Add(this.btnQuitRace);
             this.Controls.Add(this.btnStartRace);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Main";
             this.Text = "Ultimate Death Race";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.ResumeLayout(false);
 
         }

@@ -23,7 +23,7 @@ namespace Lego_Death_Race.Networking
         {
             get
             {
-                return DateTime.Now.Subtract(mLastAccessed).Seconds >= 1 ? false : true;
+                return DateTime.Now.Subtract(mLastAccessed).Seconds >= 2 ? false : true;
             }
         }
 
@@ -35,8 +35,10 @@ namespace Lego_Death_Race.Networking
                 switch(ip.Substring(ip.Length - 3, 3))
                 {
                     case "118":
+                    case "200":
                         return 0;
                     case "121":
+                    case "201":
                         return 1;
                     default:
                         return -1;

@@ -50,7 +50,6 @@
             this.pboxCarConnected = new System.Windows.Forms.PictureBox();
             this.pboxControllerConnected = new System.Windows.Forms.PictureBox();
             this.pboxPowerup = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.pbarPowerUpAmmo = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
@@ -323,16 +322,6 @@
             this.pboxPowerup.TabIndex = 3;
             this.pboxPowerup.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(43, 466);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // pbarPowerUpAmmo
             // 
             this.pbarPowerUpAmmo.ForeColor = System.Drawing.SystemColors.Desktop;
@@ -349,7 +338,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.pbarPowerUpAmmo);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.pboxCarConnected);
             this.Controls.Add(this.pboxControllerConnected);
             this.Controls.Add(this.lblRank);
@@ -398,7 +386,6 @@
         private System.Windows.Forms.Label lblRank;
         private System.Windows.Forms.PictureBox pboxControllerConnected;
         private System.Windows.Forms.PictureBox pboxCarConnected;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ProgressBar pbarPowerUpAmmo;
     }
 }
