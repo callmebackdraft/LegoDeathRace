@@ -76,8 +76,13 @@ namespace Lego_Death_Race.Networking
                 // Add client to list if it's not already
                 if (c == null)
                 {
+
                     c = new RegisteredClient(remote);
-                    mRegisteredClients.Add(c);
+                    RegisteredClient c2 = GetRegisteredClientByPlayerId(c.PlayerId);
+                    if (c2 != null)
+                        mRegisteredClients.Add(c);
+                    else
+                        c = c2;
                 }
                 c.ResetLastTimeAccessed();
                 OnPacketRecieved(new PacketEventArgs() { PlayerId = c.PlayerId, Packet = new Packet(buffer) });
