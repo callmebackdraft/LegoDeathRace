@@ -27,6 +27,7 @@ namespace Lego_Death_Race
         public TimeSpan CurrentLapTime { get { return mLapTimes.Count > 0 ? DateTime.Now.Subtract(mLapTimes[mLapTimes.Count - 1]) : new TimeSpan(); } }
         private float mTopSpeed = 0;
         public bool mFinishLineVarOnCar = false, mGameStartedVarOnCar = false;
+        public string PlayerName { get { return tboxName.Text; } }
 
         // Constructor
         public PlayerControl()

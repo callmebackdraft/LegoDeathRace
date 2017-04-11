@@ -22,6 +22,7 @@ namespace Lego_Death_Race
         List<PlayerControl> mPlayers = new List<PlayerControl>();
         private bool mGameRunning = false;
         ServerSocket mServerSocket = null;
+        private int mLapsToWin = 5;
 
         public Main()
         {
@@ -222,9 +223,24 @@ namespace Lego_Death_Race
                 }
 
                 // Update ranking
-                UpdatePlayerRanks();
+                List<int> ranking = UpdatePlayerRanks();
+                for (int i = 0; i < ranking.Count; i++)
+                    mPlayers[ranking[i]].SetRank(i + 1);
 
                 // Check if someone has won and act on that
+                foreach (PlayerControl p in mPlayers)
+                    if(p.LapCount >= mLapsToWin)
+                    {
+                        //MessageBox.Show("gewonnen");
+                        // Player has won
+                        // Stop sending controller data
+                        //mGameRunning = false;
+                        //MessageBox.Show("Player has won");
+                        ShowVictoriousPlayer();
+                        StopRaceLogic();
+                        
+                        return;
+                    }
 
                 Thread.Sleep(50);
 
@@ -233,7 +249,28 @@ namespace Lego_Death_Race
             Console.WriteLine("Exited main loop");
         }
 
-        private void UpdatePlayerRanks()
+        private void ShowVictoriousPlayer()
+        {
+            CT_BlackOutGui(true);
+            //while (pnlSeperator.Size.Height == 2) { }
+            // Play sound
+            SoundPlayer sp = new SoundPlayer(Properties.Resources.THECLAP);
+            sp.Play();
+            Label l = new Label();
+            l.Location = new Point(0, 0);
+            l.Size = pnlSeperator.Size;
+            l.TextAlign = ContentAlignment.TopCenter;
+            l.ForeColor = Color.Yellow;
+            l.Font = new Font("Terminator Two", 48);
+            //pnlSeperator.Controls.Add(l);
+            l.Text += "Game Over!" + Environment.NewLine + Environment.NewLine;
+            List<int> ranking = UpdatePlayerRanks();
+            for (int i = 0; i < ranking.Count; i++)
+                l.Text += (i + 1) + ". " + mPlayers[i].PlayerName + Environment.NewLine;
+            CT_AddCountDownLabel(l);
+        }
+
+        private List<int> UpdatePlayerRanks()
         {
             List<int> ranking = new List<int>();
             //List<int> excludePlayers = new List<int>();
@@ -260,8 +297,7 @@ namespace Lego_Death_Race
                 }
                 ranking.Add(fastest);
             }
-            for (int i = 0; i < ranking.Count; i++)
-                mPlayers[ranking[i]].SetRank(i + 1);
+            return ranking;
         }
 
         private bool IsIntInList(int value, List<int> list)
@@ -375,6 +411,19 @@ namespace Lego_Death_Race
         #endregion
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            StopRaceLogic();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            mPlayers[0].AddLapTime(DateTime.Now);
+            Console.WriteLine("Lapcount: " + mPlayers[0].LapCount);
+        }
+
+        private void StopRaceLogic()
+        {
+            if (!mGameRunning)
+                return;
             foreach (PlayerControl p in mPlayers)
             {
                 p.mGameRunning = false;

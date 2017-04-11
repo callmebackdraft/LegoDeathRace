@@ -219,6 +219,15 @@ namespace Lego_Death_Race.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream THECLAP {
+            get {
+                return ResourceManager.GetStream("THECLAP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream THREE {
             get {
                 return ResourceManager.GetStream("THREE", resourceCulture);

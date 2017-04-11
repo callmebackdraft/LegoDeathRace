@@ -14,7 +14,6 @@ C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug
 C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\Lego Death Race.exe
 C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\bin\Debug\Lego Death Race.pdb
 C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego Death Race.csprojResolveAssemblyReference.cache
-C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.Form1.resources
 C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.PlayerControl.resources
 C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego_Death_Race.Properties.Resources.resources
 C:\Users\Dirk-Jan de Beijer\Source\Repos\LegoDeathRace\Lego Death Race\obj\Debug\Lego Death Race.csproj.GenerateResource.Cache
