@@ -80,12 +80,16 @@ namespace Lego_Death_Race.Networking
                     c = new RegisteredClient(remote);
                     RegisteredClient c2 = GetRegisteredClientByPlayerId(c.PlayerId);
                     if (c2 != null)
+                    {
                         mRegisteredClients.Add(c);
-                    else
-                        c = c2;
+                    }
+
                 }
-                c.ResetLastTimeAccessed();
-                OnPacketRecieved(new PacketEventArgs() { PlayerId = c.PlayerId, Packet = new Packet(buffer) });
+                if(c != null)
+                {
+                    c.ResetLastTimeAccessed();
+                    OnPacketRecieved(new PacketEventArgs() { PlayerId = c.PlayerId, Packet = new Packet(buffer) });
+                }
             }
             Console.Write("Stopped receiving packets");
         }
